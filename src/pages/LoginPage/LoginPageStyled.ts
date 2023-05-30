@@ -5,16 +5,14 @@ const LoginPageStyled = styled.section`
   min-height: 100vh;
   background-size: cover;
   background-position: center;
+  display: flex;
+  justify-content: center;
 
   .login-tittle {
     color: ${(props) => props.theme.colors.light_color};
     font-family: ${(props) => props.theme.fonts.primary};
     font-size: 30px;
-    position: absolute;
-    width: 88px;
-    height: 46px;
-    left: 110px;
-    top: 140px;
+    padding-top: 60px;
   }
 `;
 
