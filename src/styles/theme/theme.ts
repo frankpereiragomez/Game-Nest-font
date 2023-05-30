@@ -9,7 +9,7 @@ const theme: DefaultTheme = {
     tertiary_color: "#61A146",
     light_color: "#FFF",
     soft_grey: "#CCCCCC",
-    medium_grey: "424242",
+    medium_grey: "#424242",
     dark_grey: "#262626",
     dark_black: "#000",
     error_red: "F0434E",
