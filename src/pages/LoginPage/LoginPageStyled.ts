@@ -6,7 +6,9 @@ const LoginPageStyled = styled.section`
   background-size: cover;
   background-position: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
 
   .login-tittle {
     color: ${(props) => props.theme.colors.light_color};

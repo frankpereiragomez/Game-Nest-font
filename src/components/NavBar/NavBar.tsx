@@ -7,8 +7,8 @@ const NavBar = (): React.ReactElement => {
       <ul className="navigation-menu">
         <li className="navigation-menu__home">
           <NavLink
-            to={"/home-page"}
-            className={"navigation-menu__home-button"}
+            to="/home-page"
+            className="navigation-menu__home-button"
             aria-label="home"
           >
             <img
@@ -22,8 +22,8 @@ const NavBar = (): React.ReactElement => {
         </li>
         <li className="navigation-menu__add">
           <NavLink
-            to={"/add-game"}
-            className={"navigation-menu__add-button"}
+            to="/add-game"
+            className="navigation-menu__add-button"
             aria-label="add"
           >
             <img
@@ -37,8 +37,8 @@ const NavBar = (): React.ReactElement => {
         </li>
         <li className="navigation-menu__login">
           <NavLink
-            to={"/login"}
-            className={"navigation-menu__login-button"}
+            to="/login"
+            className="navigation-menu__login-button"
             aria-label="login"
           >
             <img
