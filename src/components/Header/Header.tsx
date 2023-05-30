@@ -5,9 +5,11 @@ const Header = (): React.ReactElement => {
     <>
       <HeaderStyled>
         <img
-          className="header-logo"
+          className="header__logo"
           src="images/Logo.svg"
           alt="Game nest logo"
+          width={69.82}
+          height={48}
         />
         <h1 className="header__title">Game Nest</h1>
       </HeaderStyled>

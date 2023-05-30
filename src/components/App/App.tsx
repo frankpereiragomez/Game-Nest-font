@@ -1,13 +1,9 @@
-import Header from "../Header/Header";
-import GeneralContainerStyled from "../shared/GeneralContainerStyled";
+import Layout from "../Layout/Layout";
 
 const App = (): React.ReactElement => {
   return (
     <>
-      <Header />
-      <GeneralContainerStyled>
-        <p>Nintendo</p>
-      </GeneralContainerStyled>
+      <Layout />
     </>
   );
 };
