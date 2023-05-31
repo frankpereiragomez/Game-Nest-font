@@ -5,7 +5,7 @@ const NavBar = (): React.ReactElement => {
   return (
     <NavBarStyled>
       <ul className="navigation-menu">
-        <li className="navigation-menu__home">
+        <li>
           <NavLink
             to="/home-page"
             className="navigation-menu__home-button"
@@ -20,7 +20,7 @@ const NavBar = (): React.ReactElement => {
             />
           </NavLink>
         </li>
-        <li className="navigation-menu__add">
+        <li>
           <NavLink
             to="/add-game"
             className="navigation-menu__add-button"
