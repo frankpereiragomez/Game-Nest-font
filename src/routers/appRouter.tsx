@@ -1,15 +1,21 @@
 import { RouteObject, createBrowserRouter } from "react-router-dom";
 import App from "../components/App/App";
-import LoginPage from "../pages/LoginPage/LoginPage";
+import { Suspense } from "react";
+import path from "./path/paths";
+import LazyLoginPage from "./path/LazyLoginPage";
 
 const routes: RouteObject[] = [
   {
-    path: "/",
+    path: path.app,
     element: <App />,
     children: [
       {
-        path: "/login",
-        element: <LoginPage />,
+        path: path.login,
+        element: (
+          <Suspense>
+            <LazyLoginPage />
+          </Suspense>
+        ),
       },
     ],
   },
