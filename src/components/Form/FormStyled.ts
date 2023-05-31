@@ -22,21 +22,28 @@ const FormStyled = styled.form`
       min-width: 230px;
       height: 48px;
       border-radius: 10px;
-      background-color: ${(props) => props.theme.colors.light_color};
+      background-color: ${({ theme }) => theme.colors.light_color};
     }
 
     &__label {
-      font-family: ${(props) => props.theme.fonts.primary};
-      font-size: ${(props) => props.theme.colors.dark_black};
+      font-family: ${({ theme }) => theme.fonts.primary};
+      font-size: ${({ theme }) => theme.colors.dark_black};
     }
 
     &__button {
-      background-color: ${(props) => props.theme.colors.secondary_color};
+      background-color: ${({ theme }) => theme.colors.secondary_color};
       border-radius: 20px;
-      color: ${(props) => props.theme.colors.light_color};
-      font-family: ${(props) => props.theme.fonts.primary};
+      color: ${({ theme }) => theme.colors.light_color};
+      font-family: ${({ theme }) => theme.fonts.primary};
       font-size: 22px;
       margin-top: 36px;
+      border: solid ${({ theme }) => theme.colors.secondary_color};
+    }
+
+    &__button:disabled {
+      background-color: ${({ theme }) => theme.colors.light_color};
+      color: ${({ theme }) => theme.colors.secondary_color};
+      border: solid;
     }
   }
 `;
