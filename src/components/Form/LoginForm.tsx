@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import FormStyled from "./FormStyled";
-import { UserCredentials } from "../../types";
+import { LoginFormStructure, UserCredentials } from "../../types";
 
-const LoginForm = (): React.ReactElement => {
+const LoginForm = ({ submitForm }: LoginFormStructure): React.ReactElement => {
   const initialUserCredentials: UserCredentials = {
     username: "",
     password: "",
@@ -18,12 +18,18 @@ const LoginForm = (): React.ReactElement => {
     });
   };
 
+  const handleLoginForm = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    submitForm(userCredentialsState);
+    setUserCredentialsState(initialUserCredentials);
+  };
+
   const isEnable =
     userCredentialsState.username !== "" &&
     userCredentialsState.password !== "";
 
   return (
-    <FormStyled className="login-form">
+    <FormStyled className="login-form" onSubmit={handleLoginForm}>
       <div className="login-form__controls">
         <label className="login-form__label" htmlFor="username">
           Username:
