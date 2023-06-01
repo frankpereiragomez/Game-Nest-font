@@ -1,15 +1,25 @@
-import LoginForm from "../../components/Form/LoginForm";
+import { useNavigate } from "react-router-dom";
+import LoginForm from "../../components/LoginForm/LoginForm";
+import useUser from "../../hooks/useUser/useUser";
 import { UserCredentials } from "../../types";
 import LoginPageStyled from "./LoginPageStyled";
+import path from "../../routers/path/paths";
 
 const LoginPage = (): React.ReactElement => {
-  const handleUserlogin = (user: UserCredentials) => user;
+  const { getUserToken } = useUser();
+  const Navigate = useNavigate();
+
+  const onSubmit = async (userCredentials: UserCredentials) => {
+    await getUserToken(userCredentials);
+
+    Navigate(path.app, { replace: true });
+  };
 
   return (
     <>
       <LoginPageStyled>
         <h2 className="login-tittle">Login</h2>
-        <LoginForm submitForm={handleUserlogin} />
+        <LoginForm submitForm={onSubmit} />
       </LoginPageStyled>
     </>
   );

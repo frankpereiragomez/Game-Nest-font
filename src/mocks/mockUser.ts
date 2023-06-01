@@ -28,8 +28,8 @@ export const userToken: UserTokenStructure = {
 };
 
 export const userCredentialsMock: UserCredentials = {
-  username: "Zelda",
-  password: "zelda",
+  username: "admin",
+  password: "admin",
 };
 
 export const tokenMock: UserTokenStructure = {
