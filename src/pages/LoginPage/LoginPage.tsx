@@ -3,7 +3,7 @@ import LoginForm from "../../components/LoginForm/LoginForm";
 import useUser from "../../hooks/useUser/useUser";
 import { UserCredentials } from "../../types";
 import LoginPageStyled from "./LoginPageStyled";
-import path from "../../routers/path/paths";
+import paths from "../../routers/path/paths";
 
 const LoginPage = (): React.ReactElement => {
   const { getUserToken } = useUser();
@@ -12,7 +12,7 @@ const LoginPage = (): React.ReactElement => {
   const onSubmit = async (userCredentials: UserCredentials) => {
     await getUserToken(userCredentials);
 
-    Navigate(path.app, { replace: true });
+    Navigate(paths.app, { replace: true });
   };
 
   return (
