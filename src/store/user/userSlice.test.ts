@@ -3,7 +3,11 @@ import {
   expectedNewUserState,
   userToken,
 } from "../../mocks/mockUser";
-import { loginUserActionCreator, userReducer } from "./userSlice";
+import {
+  loginUserActionCreator,
+  logoutActionCreator,
+  userReducer,
+} from "./userSlice";
 
 describe("Given a userReducer reducer", () => {
   describe("when it receives an empty current state and a loginUser function with a user has payload", () => {
@@ -14,6 +18,17 @@ describe("Given a userReducer reducer", () => {
       );
 
       expect(newUserState).toStrictEqual(expectedNewUserState);
+    });
+  });
+
+  describe("When it call the logoutUser function", () => {
+    test("Then it should return a new state with an empty user that is unlooged", () => {
+      const newUserState = userReducer(
+        expectedNewUserState,
+        logoutActionCreator
+      );
+
+      expect(newUserState).toStrictEqual(currentUserState);
     });
   });
 });

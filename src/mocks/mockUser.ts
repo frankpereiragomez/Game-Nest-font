@@ -13,8 +13,8 @@ export const currentUserState: UserStateStructure = {
 
 export const expectedNewUserState: UserStateStructure = {
   id: "123",
-  isLogged: true,
   name: "Link",
+  isLogged: true,
   token: "J.J.Token",
 };
 
