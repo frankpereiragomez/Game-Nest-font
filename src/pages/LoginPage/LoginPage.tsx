@@ -4,14 +4,23 @@ import useUser from "../../hooks/useUser/useUser";
 import { UserCredentials } from "../../types";
 import LoginPageStyled from "./LoginPageStyled";
 import paths from "../../routers/path/paths";
+import useToken from "../../hooks/useToken/useToken";
+import { useAppDispatch } from "../../store";
+import { loginUserActionCreator } from "../../store/user/userSlice";
 
 const LoginPage = (): React.ReactElement => {
   const { getUserToken } = useUser();
+  const { decodeToken } = useToken();
+  const dispatch = useAppDispatch();
   const Navigate = useNavigate();
 
   const onSubmit = async (userCredentials: UserCredentials) => {
-    await getUserToken(userCredentials);
+    const token = await getUserToken(userCredentials);
 
+    if (token) {
+      const decodeData = await decodeToken(token);
+      dispatch(loginUserActionCreator(decodeData));
+    }
     Navigate(paths.app, { replace: true });
   };
 
