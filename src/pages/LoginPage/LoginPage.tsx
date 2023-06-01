@@ -7,10 +7,12 @@ import paths from "../../routers/path/paths";
 import useToken from "../../hooks/useToken/useToken";
 import { useAppDispatch } from "../../store";
 import { loginUserActionCreator } from "../../store/user/userSlice";
+import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
 
 const LoginPage = (): React.ReactElement => {
   const { getUserToken } = useUser();
   const { decodeToken } = useToken();
+  const { setToken } = useLocalStorage();
   const dispatch = useAppDispatch();
   const Navigate = useNavigate();
 
@@ -18,6 +20,7 @@ const LoginPage = (): React.ReactElement => {
     const token = await getUserToken(userCredentials);
 
     if (token) {
+      setToken("token", token);
       const decodeData = await decodeToken(token);
       dispatch(loginUserActionCreator(decodeData));
     }
