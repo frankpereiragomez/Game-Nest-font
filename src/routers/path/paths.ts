@@ -1,9 +1,9 @@
 import { PathsStructure } from "./types";
 
-const path: PathsStructure = {
+const paths: PathsStructure = {
   app: "/",
   login: "/login",
   homePage: "/home-page",
 };
 
-export default path;
+export default paths;
