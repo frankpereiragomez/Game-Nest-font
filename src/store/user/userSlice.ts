@@ -1,16 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { UserStateStructure, UserTokenStructure } from "../../types";
-
-const initialState: UserStateStructure = {
-  id: "",
-  name: "",
-  token: "",
-  isLogged: false,
-};
+import { currentUserState } from "../../mocks/mockUser";
 
 const userSlice = createSlice({
   name: "user",
-  initialState: initialState,
+  initialState: currentUserState,
   reducers: {
     loginUser: (
       _currentUser: UserStateStructure,
@@ -20,7 +14,7 @@ const userSlice = createSlice({
       isLogged: true,
     }),
     logoutUser: (): UserStateStructure => ({
-      ...initialState,
+      ...currentUserState,
     }),
   },
 });
