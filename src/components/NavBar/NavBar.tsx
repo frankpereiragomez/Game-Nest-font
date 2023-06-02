@@ -1,7 +1,23 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import NavBarStyled from "./NavBarStyled";
+import { useAppDispatch, useAppSelector } from "../../store";
+import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
+import { logoutActionCreator } from "../../store/user/userSlice";
+import paths from "../../routers/path/paths";
 
 const NavBar = (): React.ReactElement => {
+  const { deleteToken } = useLocalStorage();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const isLogged = useAppSelector((state) => state.user.isLogged);
+
+  const logoutOnClick = () => {
+    deleteToken("token");
+    dispatch(logoutActionCreator());
+    navigate(paths.app);
+  };
+
   return (
     <NavBarStyled>
       <ul className="navigation-menu">
@@ -35,20 +51,36 @@ const NavBar = (): React.ReactElement => {
             />
           </NavLink>
         </li>
-        <li className="navigation-menu__login">
-          <NavLink
-            to="/login"
-            className="navigation-menu__login-button"
-            aria-label="login"
-          >
-            <img
-              className="login"
-              src="images/login.svg"
-              alt="login button"
-              width={48}
-              height={48}
-            />
-          </NavLink>
+        <li>
+          {isLogged ? (
+            <button
+              className="navigation-menu__logout-button"
+              aria-label="logout"
+              onClick={logoutOnClick}
+            >
+              <img
+                className="logout"
+                src="images/logout-button.svg"
+                alt="logout button"
+                width={48}
+                height={48}
+              />
+            </button>
+          ) : (
+            <NavLink
+              to={paths.login}
+              className="navigation-menu__login-button"
+              aria-label="login"
+            >
+              <img
+                className="login"
+                src="images/login.svg"
+                alt="login button"
+                width={48}
+                height={48}
+              />
+            </NavLink>
+          )}
         </li>
       </ul>
     </NavBarStyled>

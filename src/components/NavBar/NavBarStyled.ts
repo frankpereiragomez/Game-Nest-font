@@ -10,6 +10,12 @@ const NavBarStyled = styled.nav`
   .navigation-menu {
     display: flex;
     justify-content: space-between;
+    background-color: transparent;
+
+    &__logout-button {
+      background-color: transparent;
+      padding: 0;
+    }
   }
 `;
 

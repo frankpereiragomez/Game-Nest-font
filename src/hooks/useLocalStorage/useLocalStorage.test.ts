@@ -13,9 +13,9 @@ describe("Given a useLocalStorage custom hook", () => {
         },
       } = renderHook(() => useLocalStorage());
 
-      setToken(key, realTokenMock.token);
+      setToken(key, realTokenMock);
 
-      expect(getToken(key)).toBe(realTokenMock.token);
+      expect(getToken(key)).toBe(realTokenMock);
     });
   });
 
