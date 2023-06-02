@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import useToken from "./useToken";
-import { realTokenMock } from "../../mocks/mockUser";
+import { realTokenDataMock, realTokenMock } from "../../mocks/mockUser";
 
 describe("Given a useToken custom hook", () => {
   describe("When is called the decodeToken function  with a token", () => {
@@ -11,9 +11,9 @@ describe("Given a useToken custom hook", () => {
         },
       } = renderHook(() => useToken());
 
-      const userData = decodeToken(realTokenMock.token);
+      const userData = decodeToken(realTokenMock);
 
-      expect(userData).toStrictEqual(realTokenMock);
+      expect(userData).toStrictEqual(realTokenDataMock);
     });
   });
 });
