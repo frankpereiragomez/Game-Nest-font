@@ -50,7 +50,7 @@ describe("Given a logoutOnClick function", () => {
 
       await userEvent.click(logoutButton);
 
-      expect(router.state.location.pathname).toStrictEqual(paths.app);
+      expect(router.state.location.pathname).toBe(paths.app);
     });
   });
 });
