@@ -16,3 +16,16 @@ export interface UserCredentials {
 export interface LoginFormStructure {
   submitForm: (user: UserCredentials) => void;
 }
+
+export interface VideogamesStructure {
+  name: string;
+  image: string;
+  genre: string;
+  developers: string;
+  price: number;
+  description: string;
+}
+
+export interface VideogamesDataStructure extends VideogamesStructure {
+  _id: string;
+}

@@ -1,6 +1,4 @@
 import React from "react";
-import "@fontsource/blinker";
-import "@fontsource/akshar";
 import { RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import ReactDOM from "react-dom/client";

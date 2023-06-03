@@ -14,11 +14,11 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.0.2",
     "@fontsource/akshar": "^5.0.1",
     "@fontsource/blinker": "^5.0.1",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
-    "faker": "^6.6.6",
     "jwt-decode": "^3.1.2",
     "msw": "^1.2.1",
     "react": "^18.2.0",
