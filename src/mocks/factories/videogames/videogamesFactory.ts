@@ -13,7 +13,7 @@ const videogamesFactory = Factory.define<VideogamesDataStructure>(() => ({
 }));
 
 export const getVideogameDataMock = (data?: VideogamesDataStructure) => {
-  videogamesFactory.build(data);
+  return videogamesFactory.build(data);
 };
 
 export const getVideogamesDataMock = (

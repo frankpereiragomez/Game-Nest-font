@@ -5,7 +5,7 @@ interface VideogameState {
   videogames: VideogamesDataStructure[];
 }
 
-const initialVideogameState: VideogameState = {
+export const initialVideogameState: VideogameState = {
   videogames: [],
 };
 
@@ -25,4 +25,4 @@ const videogameSlice = createSlice({
 
 export const { loadVideogames: loadVideogamesActionCreator } =
   videogameSlice.actions;
-export const videogamesReducer = videogameSlice.reducer;
+export const videogameReducer = videogameSlice.reducer;
