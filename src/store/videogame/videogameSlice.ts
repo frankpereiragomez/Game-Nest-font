@@ -1,0 +1,28 @@
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { VideogamesDataStructure } from "../../types";
+
+interface VideogameState {
+  videogames: VideogamesDataStructure[];
+}
+
+const initialVideogameState: VideogameState = {
+  videogames: [],
+};
+
+const videogameSlice = createSlice({
+  name: "videogame",
+  initialState: initialVideogameState,
+  reducers: {
+    loadVideogames: (
+      currentVideogame: VideogameState,
+      action: PayloadAction<VideogamesDataStructure[]>
+    ): VideogameState => ({
+      ...currentVideogame,
+      videogames: [...action.payload],
+    }),
+  },
+});
+
+export const { loadVideogames: loadVideogamesActionCreator } =
+  videogameSlice.actions;
+export const videogamesReducer = videogameSlice.reducer;
