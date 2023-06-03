@@ -12,10 +12,6 @@ const videogamesFactory = Factory.define<VideogamesDataStructure>(() => ({
   genre: faker.commerce.productDescription(),
 }));
 
-export const getVideogameDataMock = (data?: VideogamesDataStructure) => {
-  return videogamesFactory.build(data);
-};
-
 export const getVideogamesDataMock = (
   number: number,
   data?: VideogamesDataStructure
