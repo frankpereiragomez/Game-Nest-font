@@ -49,6 +49,7 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     font:inherit;
     border-style: none;
+    background: transparent;
   }
 
   img {
