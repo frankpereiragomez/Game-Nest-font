@@ -1,10 +1,18 @@
 import { rest } from "msw";
-import { realTokenDataMock } from "./mockUser";
+import { realTokenMock } from "./mockUser";
+import { videogamesCollectionMock } from "./videogamesMocks";
 
 export const apiUrl = import.meta.env.VITE_APP_API_URL;
 
 export const handlers = [
   rest.post(`${apiUrl}/user/login`, (_req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ token: realTokenDataMock.token }));
+    return res(ctx.status(200), ctx.json({ token: realTokenMock }));
+  }),
+
+  rest.get(`${apiUrl}/videogames`, (_req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({ videogames: videogamesCollectionMock })
+    );
   }),
 ];

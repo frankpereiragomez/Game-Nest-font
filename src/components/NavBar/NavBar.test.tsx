@@ -28,7 +28,7 @@ describe("Given a NavBar component", () => {
 
 describe("Given a logoutOnClick function", () => {
   describe("When the user is logged and click the logout button", () => {
-    test("Then it should logout and redirect the user to the '/' path", async () => {
+    test("Then it should logout and redirect the user to the '/home-page' path", async () => {
       const route: RouteObject[] = [
         {
           path: paths.app,
