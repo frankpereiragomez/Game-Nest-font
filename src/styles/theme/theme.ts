@@ -1,6 +1,7 @@
 import { DefaultTheme } from "styled-components";
 import "@fontsource/blinker";
 import "@fontsource/akshar";
+import "@fontsource/chakra-petch";
 
 const theme: DefaultTheme = {
   colors: {
@@ -17,6 +18,7 @@ const theme: DefaultTheme = {
   fonts: {
     primary: "Blinker",
     secondary: "Akshar",
+    tertiary: "Chakra Petch",
   },
 };
 

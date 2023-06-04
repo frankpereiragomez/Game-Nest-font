@@ -3,8 +3,8 @@ import styled from "styled-components";
 const NavBarStyled = styled.nav`
   padding: 16px 35px;
   background-color: ${(props) => props.theme.colors.medium_grey};
-  position: fixed;
-  bottom: 0;
+  position: sticky;
+  top: 100vh;
   width: 100%;
 
   .navigation-menu {

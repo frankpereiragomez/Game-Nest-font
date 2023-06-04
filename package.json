@@ -17,6 +17,7 @@
     "@faker-js/faker": "^8.0.2",
     "@fontsource/akshar": "^5.0.1",
     "@fontsource/blinker": "^5.0.1",
+    "@fontsource/chakra-petch": "^5.0.2",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
     "jwt-decode": "^3.1.2",

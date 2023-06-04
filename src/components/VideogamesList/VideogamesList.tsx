@@ -1,4 +1,5 @@
 import { useAppSelector } from "../../store";
+import VideogameCard from "../VideogameCard/VideogameCard";
 import VideogamesListStyled from "./VideogamesListStyled";
 
 const VideogameList = (): React.ReactElement => {
@@ -8,7 +9,7 @@ const VideogameList = (): React.ReactElement => {
     <VideogamesListStyled className="videogame-list">
       {videogames.map((videogame) => (
         <li className="videogame-card" key={videogame._id}>
-          <h2>{videogame.name}</h2>
+          <VideogameCard videogame={videogame} />
         </li>
       ))}
     </VideogamesListStyled>
