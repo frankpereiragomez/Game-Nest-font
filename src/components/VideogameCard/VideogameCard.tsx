@@ -1,4 +1,5 @@
 import { VideogamesStructure } from "../../types";
+import Button from "../Button/Button";
 import VideogameCardStyled from "./VideogameCardStyled";
 
 interface VideogameCardProps {
@@ -29,8 +30,26 @@ const VideogameCard = ({
               {videogame.developers}
             </span>
           </div>
-          <div className="videogame-card__game-price-container">
-            <p className="videogame-card__game-price">{`${videogame.price} €`}</p>
+          <span className="videogame-card__game-price">{`${videogame.price} €`}</span>
+          <div className="videogame-card__buttons-container">
+            <Button
+              button={{
+                icon: "images/edit.svg",
+                className: "videogame-card__button-edit",
+                alt: "edit button",
+                height: "48",
+                width: "48",
+              }}
+            />
+            <Button
+              button={{
+                icon: "images/close-square.svg",
+                className: "videogameCard__button-delete",
+                alt: "remove button",
+                height: "48",
+                width: "48",
+              }}
+            />
           </div>
         </article>
       </VideogameCardStyled>

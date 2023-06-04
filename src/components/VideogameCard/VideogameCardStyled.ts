@@ -26,6 +26,7 @@ const VideogameCardStyled = styled.section`
       width: 270px;
       height: 175px;
       gap: 15px;
+      position: relative;
     }
 
     &__details-container p {
@@ -44,6 +45,12 @@ const VideogameCardStyled = styled.section`
 
     &__game-price {
       font-size: 16px;
+    }
+
+    &__buttons-container {
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
     }
   }
 `;
