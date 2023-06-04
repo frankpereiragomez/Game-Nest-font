@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import useUser from "./useUser";
-import { realTokenDataMock, userCredentialsMock } from "../../mocks/mockUser";
+import { realTokenMock, userCredentialsMock } from "../../mocks/mockUser";
 
 describe("Given a useUser custom hook", () => {
   describe("When it called the getUserToken function with a valid user credentials", () => {
@@ -13,7 +13,7 @@ describe("Given a useUser custom hook", () => {
 
       const token = await getUserToken(userCredentialsMock);
 
-      expect(token).toStrictEqual(realTokenDataMock.token);
+      expect(token).toStrictEqual(realTokenMock);
     });
   });
 });

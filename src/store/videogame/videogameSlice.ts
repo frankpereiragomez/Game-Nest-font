@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { VideogamesDataStructure } from "../../types";
 
-interface VideogameState {
+export interface VideogameState {
   videogames: VideogamesDataStructure[];
 }
 
