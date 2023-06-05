@@ -4,21 +4,26 @@ import VideogameCardStyled from "./VideogameCardStyled";
 
 interface VideogameCardProps {
   videogame: VideogamesStructure;
+  isLazy: "lazy" | "eager";
 }
 
 const VideogameCard = ({
   videogame,
+  isLazy,
 }: VideogameCardProps): React.ReactElement => {
   return (
     <>
       <VideogameCardStyled className="videogame-card">
-        <img
-          className="videogame-card__image"
-          src={videogame.image}
-          alt={videogame.name}
-          width={150}
-          height={227}
-        />
+        <div className="videogame-card__image-container">
+          <img
+            className="videogame-card__image"
+            src={videogame.image}
+            alt={videogame.name}
+            width={181}
+            height={227}
+            loading={isLazy}
+          />
+        </div>
         <article className="videogame-card__info-container">
           <h2 className="videogame-card__name">{videogame.name}</h2>
           <div className="videogame-card__details-container">

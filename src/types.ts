@@ -27,7 +27,7 @@ export interface VideogamesStructure {
 }
 
 export interface VideogamesDataStructure extends VideogamesStructure {
-  _id: string;
+  id: string;
 }
 
 export interface ButtonStructure {

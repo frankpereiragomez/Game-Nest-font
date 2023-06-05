@@ -4,7 +4,7 @@ import { VideogamesDataStructure } from "../../../types";
 
 const videogamesFactory = Factory.define<VideogamesDataStructure>(() => ({
   name: faker.person.firstName(),
-  _id: faker.database.mongodbObjectId().toString(),
+  id: faker.database.mongodbObjectId().toString(),
   price: faker.number.float(),
   image: faker.image.url(),
   description: faker.commerce.productDescription(),
