@@ -39,3 +39,7 @@ export interface ButtonStructure {
   width?: string;
   height?: string;
 }
+
+export interface UiStructure {
+  isLoading: boolean;
+}

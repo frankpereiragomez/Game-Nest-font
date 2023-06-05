@@ -23,11 +23,7 @@ const VideogameCard = ({
           <h2 className="videogame-card__name">{videogame.name}</h2>
           <div className="videogame-card__details-container">
             <span className="videogame-card__game-genre">
-              {videogame.genre}
-            </span>
-            <span className="videogame-card__separator">|</span>
-            <span className="videogame-card__game-developers">
-              {videogame.developers}
+              {`${videogame.genre}   |   ${videogame.developers}`}
             </span>
           </div>
           <span className="videogame-card__game-price">{`${videogame.price} €`}</span>

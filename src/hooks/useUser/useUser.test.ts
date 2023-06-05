@@ -1,6 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import useUser from "./useUser";
 import { realTokenMock, userCredentialsMock } from "../../mocks/mockUser";
+import { wrapper } from "../../utils/testUtils";
 
 describe("Given a useUser custom hook", () => {
   describe("When it called the getUserToken function with a valid user credentials", () => {
@@ -9,7 +10,7 @@ describe("Given a useUser custom hook", () => {
         result: {
           current: { getUserToken },
         },
-      } = renderHook(() => useUser());
+      } = renderHook(() => useUser(), { wrapper: wrapper });
 
       const token = await getUserToken(userCredentialsMock);
 
