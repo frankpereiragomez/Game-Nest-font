@@ -8,7 +8,7 @@ import {
   createMemoryRouter,
 } from "react-router-dom";
 import paths from "../../routers/path/paths";
-import LazyLoginPage from "../../routers/path/LazyLoginPage";
+import { LazyLoginPage } from "../../routers/path/LazyPages/LazyPagez";
 
 describe("Given a LoginPage component", () => {
   const expectedButtonText = "Login";
