@@ -7,9 +7,12 @@ const VideogameList = (): React.ReactElement => {
 
   return (
     <VideogamesListStyled className="videogame-list">
-      {videogames.map((videogame) => (
-        <li className="videogame-card" key={videogame._id}>
-          <VideogameCard videogame={videogame} />
+      {videogames.map((videogame, index) => (
+        <li className="videogame-card" key={videogame.id}>
+          <VideogameCard
+            isLazy={index === 0 ? "eager" : "lazy"}
+            videogame={videogame}
+          />
         </li>
       ))}
     </VideogamesListStyled>

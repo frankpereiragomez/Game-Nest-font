@@ -10,7 +10,10 @@ describe("Given a VideogameCard component", () => {
 
       renderWithProviders(
         wrapWithRouter(
-          <VideogameCard videogame={videogamesCollectionMock[0]} />
+          <VideogameCard
+            isLazy="eager"
+            videogame={videogamesCollectionMock[0]}
+          />
         )
       );
 
