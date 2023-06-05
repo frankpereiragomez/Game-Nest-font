@@ -3,7 +3,7 @@ import LoadingStyled from "./LoadingStyled";
 
 const Loading = (): React.ReactElement => {
   return (
-    <LoadingStyled className="loading-container">
+    <LoadingStyled className="loading-container" aria-label="loading spinner">
       <Ring size={120} lineWeight={5} speed={2} color="#61A146" />
     </LoadingStyled>
   );
