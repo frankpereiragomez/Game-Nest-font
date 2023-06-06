@@ -1,13 +1,23 @@
-# Boilerplate for React apps
+# Game Nest
 
-With Vite + TypeScript
+Game Nest is an application that will help you to have all your video games collection in one place, you will be able to see public collections and, when you log in, you will be able to add, modify and delete games from your personal collection. With a simple but intuitive design.
 
-## Scripts
+## Tech Stack
 
-`npm run dev`: starts a development server
+Game Nest is built using the following technologies:
 
-`npm run build`: builds the app
+Redux Toolkit
+React
+TypeScript
+Jest & Vite
+Styled components
+React testing library
+Axios
 
-`npm run preview`: runs the built app
+## Demo
 
-`npm run lint`: runs ESLint
+[Check it here](https://frank-pereira-final-project-front-20.netlify.app/)
+
+## Author
+
+https://github.com/Aragata000

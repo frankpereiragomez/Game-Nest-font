@@ -43,3 +43,8 @@ export interface ButtonStructure {
 export interface UiStructure {
   isLoading: boolean;
 }
+
+export interface FeedBackStructure {
+  message?: string;
+  isError?: boolean;
+}
