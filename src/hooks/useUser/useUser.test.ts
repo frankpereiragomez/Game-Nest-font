@@ -21,7 +21,7 @@ describe("Given a useUser custom hook", () => {
   });
 
   describe("When it called the getUserToken function with wrong credentials", () => {
-    test("Then it should return the response's method with an error with 401 status code", () => {
+    test("Then it should return the response's method with an error with 401 status code", async () => {
       server.resetHandlers(...errorHandlers);
 
       const {
@@ -30,9 +30,9 @@ describe("Given a useUser custom hook", () => {
         },
       } = renderHook(() => useUser(), { wrapper: wrapper });
 
-      const userToken = getUserToken(userCredentialsMock);
+      const userToken = await getUserToken(userCredentialsMock);
 
-      expect(userToken).rejects.toThrowError();
+      expect(userToken).toBeUndefined();
     });
   });
 });

@@ -3,13 +3,18 @@ import { UserCredentials } from "../../types";
 import { apiUrl } from "../../mocks/handlers";
 import { useCallback } from "react";
 import { useAppDispatch } from "../../store";
-import { showLoadingActionCreator } from "../../store/ui/uiSlice";
+import {
+  hideLoadingActionCreator,
+  showFeedbackActionCreator,
+  showLoadingActionCreator,
+} from "../../store/ui/uiSlice";
+import feedbackMessages from "../../utils/feedbackMessages/feedbackMessages";
 
 const useUser = () => {
   const dispatch = useAppDispatch();
 
   const getUserToken = useCallback(
-    async (UserCredentials: UserCredentials): Promise<string> => {
+    async (UserCredentials: UserCredentials): Promise<string | undefined> => {
       try {
         dispatch(showLoadingActionCreator());
 
@@ -22,7 +27,13 @@ const useUser = () => {
 
         return token;
       } catch (error) {
-        throw new Error("Wrong credentials");
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showFeedbackActionCreator({
+            isError: true,
+            message: feedbackMessages.credentialsWrong,
+          })
+        );
       }
     },
     [dispatch]
