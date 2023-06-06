@@ -10,16 +10,20 @@ const useUser = () => {
 
   const getUserToken = useCallback(
     async (UserCredentials: UserCredentials): Promise<string> => {
-      dispatch(showLoadingActionCreator());
+      try {
+        dispatch(showLoadingActionCreator());
 
-      const {
-        data: { token },
-      } = await axios.post<{ token: string }>(
-        `${apiUrl}/user/login`,
-        UserCredentials
-      );
+        const {
+          data: { token },
+        } = await axios.post<{ token: string }>(
+          `${apiUrl}/user/login`,
+          UserCredentials
+        );
 
-      return token;
+        return token;
+      } catch (error) {
+        throw new Error("Wrong credentials");
+      }
     },
     [dispatch]
   );

@@ -12,7 +12,9 @@ const VideogamesPage = (): React.ReactElement => {
   useEffect(() => {
     (async () => {
       const videogames = await getVideogames();
-      dispatch(loadVideogamesActionCreator(videogames));
+      if (videogames) {
+        dispatch(loadVideogamesActionCreator(videogames));
+      }
     })();
   }, [dispatch, getVideogames]);
 
@@ -21,7 +23,6 @@ const VideogamesPage = (): React.ReactElement => {
       <VideogamesPageStyled>
         <VideogameList />
       </VideogamesPageStyled>
-      ;
     </>
   );
 };

@@ -25,11 +25,24 @@ const UserFeedbackStyled = styled.div`
     min-width: 200px;
     max-width: 400px;
 
+    &__text {
+      font-family: ${({ theme }) => theme.fonts.primary};
+      font-size: 25px;
+    }
+
     &__feedback-type {
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 100%;
+    }
+
+    &__title {
+      color: ${({ theme }) => theme.colors.tertiary_color};
+
+      &--error {
+        color: ${({ theme }) => theme.colors.error_red};
+      }
     }
   }
 `;

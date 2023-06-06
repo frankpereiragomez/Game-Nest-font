@@ -13,7 +13,7 @@ const theme: DefaultTheme = {
     medium_grey: "#424242",
     dark_grey: "#262626",
     dark_black: "#000",
-    error_red: "F0434E",
+    error_red: "#F0434E",
   },
   fonts: {
     primary: "Blinker",

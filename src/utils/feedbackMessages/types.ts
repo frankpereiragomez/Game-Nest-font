@@ -6,4 +6,5 @@ export interface FeedbackMessages {
   createFailed: string;
   updateOk: string;
   updateFailed: string;
+  somethingWrong: string;
 }
