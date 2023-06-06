@@ -10,7 +10,7 @@ const VideogameList = (): React.ReactElement => {
       {videogames.map((videogame, index) => (
         <li className="videogame-card" key={videogame.id}>
           <VideogameCard
-            isLazy={index === 0 ? "eager" : "lazy"}
+            isLazy={index === 0 || index === 1 ? "eager" : "lazy"}
             videogame={videogame}
           />
         </li>

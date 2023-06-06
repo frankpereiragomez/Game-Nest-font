@@ -7,3 +7,7 @@ export const LazyLoginPage = lazy(
 export const LazyVideogamesPage = lazy(
   () => import("../../../pages/VideogamesPage/VideogamesPage.tsx")
 );
+
+export const LazyNotFoundPage = lazy(
+  () => import("../../../pages/PageNotFound/PageNotFound.tsx")
+);

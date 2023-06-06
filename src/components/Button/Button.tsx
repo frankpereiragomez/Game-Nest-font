@@ -7,7 +7,7 @@ interface ButtonProps {
 const Button = ({ button }: ButtonProps): React.ReactElement => {
   return (
     <>
-      <button className={button.className}>
+      <button className={button.className} onClick={button.actionOnClick}>
         {button.text || (
           <img
             src={button.icon}
