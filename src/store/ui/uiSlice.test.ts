@@ -1,5 +1,6 @@
 import { FeedbackPayloadStructure, UiStructure } from "../../types";
 import {
+  hideFeedbackActionCreator,
   hideLoadingActionCreator,
   showFeedbackActionCreator,
   showLoadingActionCreator,
@@ -31,6 +32,9 @@ describe("Given a hiddeLoading reducer", () => {
       };
       const expectedState: UiStructure = {
         isLoading: false,
+        isError: false,
+        showFeedback: false,
+        message: "",
       };
 
       const newState = uiReducer(currentUiState, hideLoadingActionCreator());
@@ -42,7 +46,7 @@ describe("Given a hiddeLoading reducer", () => {
 
 describe("Given a showFeedback reducer", () => {
   describe("When it receives an UI state and a showFeedback action as payload", () => {
-    test("Then it should toogle the showFeedback statte to true", () => {
+    test("Then it should toogle the showFeedback state to true", () => {
       const currentUiState: UiStructure = {
         showFeedback: false,
         isError: false,
@@ -62,6 +66,28 @@ describe("Given a showFeedback reducer", () => {
         currentUiState,
         showFeedbackActionCreator(payload)
       );
+
+      expect(newUiState).toStrictEqual(expectedUiState);
+    });
+  });
+});
+
+describe("Given a hideFeedback reducer", () => {
+  describe("When it receives an UI state and a hideFeedback action as payload", () => {
+    test("Then it should toogle the showFeedback state to false", () => {
+      const currentUiState: UiStructure = {
+        showFeedback: true,
+        isError: false,
+        message: "",
+      };
+      const expectedUiState: UiStructure = {
+        showFeedback: false,
+        isError: false,
+        message: "",
+        isLoading: false,
+      };
+
+      const newUiState = uiReducer(currentUiState, hideFeedbackActionCreator());
 
       expect(newUiState).toStrictEqual(expectedUiState);
     });
