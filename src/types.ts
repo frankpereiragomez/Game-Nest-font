@@ -39,12 +39,14 @@ export interface ButtonStructure {
   width?: string;
   height?: string;
 }
-
 export interface UiStructure {
-  isLoading: boolean;
-}
-
-export interface FeedBackStructure {
+  isLoading?: boolean;
   message?: string;
   isError?: boolean;
+  showFeedback?: boolean;
+}
+
+export interface FeedbackPayloadStructure {
+  isError: boolean;
+  message: string;
 }

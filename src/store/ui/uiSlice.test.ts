@@ -1,6 +1,7 @@
-import { UiStructure } from "../../types";
+import { FeedbackPayloadStructure, UiStructure } from "../../types";
 import {
   hideLoadingActionCreator,
+  showFeedbackActionCreator,
   showLoadingActionCreator,
   uiReducer,
 } from "./uiSlice";
@@ -35,6 +36,34 @@ describe("Given a hiddeLoading reducer", () => {
       const newState = uiReducer(currentUiState, hideLoadingActionCreator());
 
       expect(newState).toStrictEqual(expectedState);
+    });
+  });
+});
+
+describe("Given a showFeedback reducer", () => {
+  describe("When it receives an UI state and a showFeedback action as payload", () => {
+    test("Then it should toogle the showFeedback statte to true", () => {
+      const currentUiState: UiStructure = {
+        showFeedback: false,
+        isError: false,
+        message: "",
+      };
+      const expectedUiState: UiStructure = {
+        showFeedback: true,
+        isError: true,
+        message: "Wrong credentials",
+      };
+      const payload: FeedbackPayloadStructure = {
+        isError: true,
+        message: "Wrong credentials",
+      };
+
+      const newUiState = uiReducer(
+        currentUiState,
+        showFeedbackActionCreator(payload)
+      );
+
+      expect(newUiState).toStrictEqual(expectedUiState);
     });
   });
 });

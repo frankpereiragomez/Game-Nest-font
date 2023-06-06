@@ -1,8 +1,8 @@
-import { FeedBackStructure } from "../../../types";
+import { UiStructure } from "../../../types";
 import UserFeedbackStyled from "./UserFeedbackStyled";
 
 interface UserFeedbackProps {
-  feedback: FeedBackStructure;
+  feedback: UiStructure;
 }
 
 const UserFeedback = ({ feedback }: UserFeedbackProps): React.ReactElement => {
