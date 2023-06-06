@@ -1,7 +1,8 @@
 import { screen } from "@testing-library/react";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import Layout from "./Layout";
-import uiMock from "../../mocks/uiMock";
+import UserFeedback from "../Ui/UserFeedback/UserFeedback";
+import { feedbackMock, uiMock } from "../../mocks/uiMock";
 
 describe("Given a layout component", () => {
   describe("When it's rendered", () => {
@@ -29,6 +30,20 @@ describe("Given a layout component", () => {
       const loadingSpinner = screen.getByLabelText(expectedLabelText);
 
       expect(loadingSpinner).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's rendered and receives an error loading the homepage", () => {
+    test("The it should show a Feedback component", () => {
+      const expectedLabeltext = "feedback modal";
+
+      renderWithProviders(wrapWithRouter(<UserFeedback />), {
+        ui: feedbackMock,
+      });
+
+      const feedback = screen.getByLabelText(expectedLabeltext);
+
+      expect(feedback).toBeInTheDocument();
     });
   });
 });
