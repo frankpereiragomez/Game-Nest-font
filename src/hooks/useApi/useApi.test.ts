@@ -2,6 +2,8 @@ import { renderHook } from "@testing-library/react";
 import useApi from "./useApi";
 import { videogamesCollectionMock } from "../../mocks/videogamesMocks";
 import { wrapper } from "../../utils/testUtils";
+import { server } from "../../mocks/server";
+import { errorHandlers } from "../../mocks/handlers";
 
 describe("Given a useApi custom hook", () => {
   describe("When is called with the getVideogames function", () => {
@@ -15,6 +17,22 @@ describe("Given a useApi custom hook", () => {
       const videogames = await getVideogames();
 
       expect(videogames).toStrictEqual(videogamesCollectionMock);
+    });
+  });
+
+  describe("When is called the getVideogames function and can't get videogames", () => {
+    test("Then it should show a error modal with the 'Something was wrong, please try again!' message", async () => {
+      server.resetHandlers(...errorHandlers);
+
+      const {
+        result: {
+          current: { getVideogames },
+        },
+      } = renderHook(() => useApi(), { wrapper: wrapper });
+
+      const videogames = await getVideogames();
+
+      expect(videogames).toBeUndefined();
     });
   });
 });

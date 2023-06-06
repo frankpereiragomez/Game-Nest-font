@@ -17,7 +17,7 @@ const routes: RouteObject[] = [
         path: paths.homePage,
         element: (
           <Suspense>
-            <LazyVideogamesPage />,
+            <LazyVideogamesPage />
           </Suspense>
         ),
       },

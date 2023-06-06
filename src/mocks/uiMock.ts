@@ -1,7 +1,9 @@
 import { UiStructure } from "../types";
 
-const uiMock: UiStructure = {
+export const uiMock: UiStructure = {
   isLoading: true,
 };
 
-export default uiMock;
+export const feedbackMock: UiStructure = {
+  showFeedback: true,
+};

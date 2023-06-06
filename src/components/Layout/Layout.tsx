@@ -4,13 +4,16 @@ import GeneralContainerStyled from "../shared/GeneralContainerStyled";
 import NavBar from "../NavBar/NavBar";
 import { useAppSelector } from "../../store";
 import Loading from "../Ui/Loading/Loading";
+import UserFeedback from "../Ui/UserFeedback/UserFeedback";
 
 const Layout = (): React.ReactElement => {
   const { pathname } = useLocation();
   const isLoading = useAppSelector((state) => state.ui.isLoading);
+  const showFeedback = useAppSelector((state) => state.ui.showFeedback);
 
   return (
     <>
+      {showFeedback && <UserFeedback />}
       {isLoading && <Loading />}
       <Header />
       <GeneralContainerStyled className="body-container">

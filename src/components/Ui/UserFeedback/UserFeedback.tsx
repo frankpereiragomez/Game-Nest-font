@@ -1,23 +1,19 @@
-import { UiStructure } from "../../../types";
+import { useAppSelector } from "../../../store";
 import UserFeedbackStyled from "./UserFeedbackStyled";
 
-interface UserFeedbackProps {
-  feedback: UiStructure;
-}
+const UserFeedback = (): React.ReactElement => {
+  const { isError, message } = useAppSelector((state) => state.ui);
 
-const UserFeedback = ({ feedback }: UserFeedbackProps): React.ReactElement => {
   return (
     <UserFeedbackStyled className="feedback-container">
       <article className="modal" aria-label="feedback modal">
         <div className="modal__feedback-type">
           <h2
-            className={`modal__title${
-              feedback.isError ? " modal__title--error" : ""
-            }`}
+            className={`modal__title${isError ? " modal__title--error" : ""}`}
           >
-            {feedback.isError ? "Error" : "Great"}
+            {isError ? "Error" : "Great"}
           </h2>
-          {feedback.isError ? (
+          {isError ? (
             <img
               src="images/feedback/close-error.svg"
               alt="error icon"
@@ -35,7 +31,7 @@ const UserFeedback = ({ feedback }: UserFeedbackProps): React.ReactElement => {
             />
           )}
         </div>
-        <p className="modal__text"> {feedback.message}</p>
+        <p className="modal__text"> {message}</p>
       </article>
     </UserFeedbackStyled>
   );
