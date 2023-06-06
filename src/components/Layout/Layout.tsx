@@ -3,7 +3,8 @@ import Header from "../Header/Header";
 import GeneralContainerStyled from "../shared/GeneralContainerStyled";
 import NavBar from "../NavBar/NavBar";
 import { useAppSelector } from "../../store";
-import Loading from "../Loading/Loading";
+import Loading from "../Ui/Loading/Loading";
+import UserFeedback from "../Ui/UserFeedback/UserFeedback";
 
 const Layout = (): React.ReactElement => {
   const { pathname } = useLocation();
@@ -11,6 +12,7 @@ const Layout = (): React.ReactElement => {
 
   return (
     <>
+      <UserFeedback feedback={{ message: "Yeeiiiiii" }} />
       {isLoading && <Loading />}
       <Header />
       <GeneralContainerStyled className="body-container">
