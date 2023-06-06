@@ -19,12 +19,14 @@ const LoginPage = (): React.ReactElement => {
   const onSubmit = async (userCredentials: UserCredentials) => {
     const token = await getUserToken(userCredentials);
 
-    setToken("token", token);
-    const decodeData = await decodeToken(token);
-    dispatch(
-      loginUserActionCreator({ ...decodeData, token } as UserTokenStructure)
-    );
-    navigate(paths.homePage);
+    if (token) {
+      setToken("token", token);
+      const decodeData = await decodeToken(token);
+      dispatch(
+        loginUserActionCreator({ ...decodeData, token } as UserTokenStructure)
+      );
+      navigate(paths.homePage);
+    }
   };
 
   return (
