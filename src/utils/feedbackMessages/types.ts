@@ -7,4 +7,6 @@ export interface FeedbackMessages {
   updateOk: string;
   updateFailed: string;
   somethingWrong: string;
+  pageNotFound: string;
+  goBack: string;
 }

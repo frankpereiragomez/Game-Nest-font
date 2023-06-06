@@ -9,6 +9,8 @@ const feedbackMessages: feedbackMessages = {
   updateOk: "Your game has been successfully modified",
   updateFailed: "Your game could not be modified ",
   somethingWrong: "Something was wrong, please try again!",
+  pageNotFound: "Page not found. Please go back.",
+  goBack: "Go Back",
 };
 
 export default feedbackMessages;
