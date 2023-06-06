@@ -1,21 +1,35 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { UiStructure } from "../../types";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { FeedbackPayloadStructure, UiStructure } from "../../types";
 
-const initialUiState: UiStructure = {
+export const initialFeedbackState: UiStructure = {
   isLoading: false,
+  isError: false,
+  showFeedback: false,
+  message: "",
 };
 
 const uiSlice = createSlice({
   name: "ui",
-  initialState: initialUiState,
+  initialState: initialFeedbackState,
   reducers: {
     showLoading: (currentState: UiStructure): UiStructure => ({
       ...currentState,
       isLoading: true,
     }),
-    hideLoading: (currentState: UiStructure): UiStructure => ({
+    hideLoading: (): UiStructure => ({
+      ...initialFeedbackState,
+    }),
+    showFeedback: (
+      currentState: UiStructure,
+      action: PayloadAction<FeedbackPayloadStructure>
+    ): UiStructure => ({
       ...currentState,
-      isLoading: false,
+      showFeedback: true,
+      isError: action.payload.isError,
+      message: action.payload.message,
+    }),
+    hideFeedback: (): UiStructure => ({
+      ...initialFeedbackState,
     }),
   },
 });
@@ -23,6 +37,8 @@ const uiSlice = createSlice({
 export const {
   showLoading: showLoadingActionCreator,
   hideLoading: hideLoadingActionCreator,
+  showFeedback: showFeedbackActionCreator,
+  hideFeedback: hideFeedbackActionCreator,
 } = uiSlice.actions;
 
 export const uiReducer = uiSlice.reducer;
