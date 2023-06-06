@@ -1,10 +1,8 @@
 import { screen } from "@testing-library/react";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import Layout from "./Layout";
-import UserFeedback from "../Ui/UserFeedback/UserFeedback";
-import { feedbackMock, uiMock } from "../../mocks/uiMock";
 
-describe("Given a layout component", () => {
+describe("Given a Layout component", () => {
   describe("When it's rendered", () => {
     test("Then it should show a heading with 'Game Nest' text", () => {
       const expectedTest = "Game Nest";
@@ -20,11 +18,11 @@ describe("Given a layout component", () => {
   });
 
   describe("When it's rendered but it is taking a long time to go to the desired page", () => {
-    test("Then it shoul show a loading spinner", () => {
+    test("Then it should show a loading spinner", () => {
       const expectedLabelText = "loading spinner";
 
       renderWithProviders(wrapWithRouter(<Layout />), {
-        ui: uiMock,
+        ui: { isLoading: true },
       });
 
       const loadingSpinner = screen.getByLabelText(expectedLabelText);
@@ -37,8 +35,8 @@ describe("Given a layout component", () => {
     test("The it should show a Feedback component", () => {
       const expectedLabeltext = "feedback modal";
 
-      renderWithProviders(wrapWithRouter(<UserFeedback />), {
-        ui: feedbackMock,
+      renderWithProviders(wrapWithRouter(<Layout />), {
+        ui: { showFeedback: true },
       });
 
       const feedback = screen.getByLabelText(expectedLabeltext);
