@@ -31,7 +31,7 @@ describe("Given a VideogameCard component", () => {
     });
   });
 
-  describe("When it's rendered with the actionOnClick function and the user click the delete button", () => {
+  describe("When it's rendered with the actionOnClick function and the user click the delete button on his own card", () => {
     test("Then it should call the actionOnClick function", async () => {
       const videogamesFactoryMock = getVideogamesDataMock(1);
       const buttonAltText = "remove button";
