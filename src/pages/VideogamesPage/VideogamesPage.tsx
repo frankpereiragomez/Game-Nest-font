@@ -3,10 +3,10 @@ import { useAppDispatch } from "../../store";
 import { loadVideogamesActionCreator } from "../../store/videogame/videogameSlice";
 import VideogameList from "../../components/VideogamesList/VideogamesList";
 import VideogamesPageStyled from "./VideogamesPageStyled";
-import useApi from "../../hooks/useApi/useApi";
+import useVideogames from "../../hooks/useVideogames/useVideogames";
 
 const VideogamesPage = (): React.ReactElement => {
-  const { getVideogames } = useApi();
+  const { getVideogames } = useVideogames();
   const dispatch = useAppDispatch();
 
   useEffect(() => {

@@ -1,16 +1,23 @@
-import { VideogamesStructure } from "../../types";
+import { useAppSelector } from "../../store";
+import { VideogamesDataStructure } from "../../types";
 import Button from "../Button/Button";
 import VideogameCardStyled from "./VideogameCardStyled";
 
 interface VideogameCardProps {
-  videogame: VideogamesStructure;
+  videogame: VideogamesDataStructure;
   isLazy: "lazy" | "eager";
+  actionOnClick: (videogameId: string) => void;
 }
 
 const VideogameCard = ({
   videogame,
   isLazy,
+  actionOnClick,
 }: VideogameCardProps): React.ReactElement => {
+  const { isLogged, id: userId } = useAppSelector((state) => state.user);
+
+  const isVideogameOwner = isLogged && userId === videogame.user;
+
   return (
     <>
       <VideogameCardStyled className="videogame-card">
@@ -32,26 +39,29 @@ const VideogameCard = ({
             </span>
           </div>
           <span className="videogame-card__game-price">{`${videogame.price} €`}</span>
-          <div className="videogame-card__buttons-container">
-            <Button
-              button={{
-                icon: "images/edit.svg",
-                className: "videogame-card__button-edit",
-                alt: "edit button",
-                height: "48",
-                width: "48",
-              }}
-            />
-            <Button
-              button={{
-                icon: "images/close-square.svg",
-                className: "videogameCard__button-delete",
-                alt: "remove button",
-                height: "48",
-                width: "48",
-              }}
-            />
-          </div>
+          {isVideogameOwner && (
+            <div className="videogame-card__buttons-container">
+              <Button
+                button={{
+                  icon: "images/edit.svg",
+                  className: "videogame-card__button-edit",
+                  alt: "edit button",
+                  height: "48",
+                  width: "48",
+                }}
+              />
+              <Button
+                button={{
+                  icon: "images/close-square.svg",
+                  className: "videogameCard__button-delete",
+                  alt: "remove button",
+                  height: "48",
+                  width: "48",
+                  actionOnClick: () => actionOnClick(videogame.id),
+                }}
+              />
+            </div>
+          )}
         </article>
       </VideogameCardStyled>
     </>

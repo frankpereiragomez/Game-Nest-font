@@ -11,7 +11,7 @@ import {
 } from "../../store/ui/uiSlice";
 import feedbackMessages from "../../utils/feedbackMessages/feedbackMessages";
 
-const useApi = () => {
+const useVideogames = () => {
   const dispatch = useAppDispatch();
 
   const getVideogames = useCallback(async (): Promise<
@@ -41,4 +41,4 @@ const useApi = () => {
   return { getVideogames };
 };
 
-export default useApi;
+export default useVideogames;

@@ -24,6 +24,7 @@ export interface VideogamesStructure {
   developers: string;
   price: number;
   description: string;
+  user: string;
 }
 
 export interface VideogamesDataStructure extends VideogamesStructure {
@@ -38,6 +39,7 @@ export interface ButtonStructure {
   icon?: string;
   width?: string;
   height?: string;
+  arialLabel?: string;
 }
 export interface UiStructure {
   isLoading?: boolean;

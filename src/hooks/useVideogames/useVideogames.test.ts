@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import useApi from "./useApi";
+import useVideogames from "./useVideogames";
 import { videogamesCollectionMock } from "../../mocks/videogamesMocks";
 import { wrapper } from "../../utils/testUtils";
 import { server } from "../../mocks/server";
@@ -12,7 +12,7 @@ describe("Given a useApi custom hook", () => {
         result: {
           current: { getVideogames },
         },
-      } = renderHook(() => useApi(), { wrapper: wrapper });
+      } = renderHook(() => useVideogames(), { wrapper: wrapper });
 
       const videogames = await getVideogames();
 
@@ -28,7 +28,7 @@ describe("Given a useApi custom hook", () => {
         result: {
           current: { getVideogames },
         },
-      } = renderHook(() => useApi(), { wrapper: wrapper });
+      } = renderHook(() => useVideogames(), { wrapper: wrapper });
 
       const videogames = await getVideogames();
 

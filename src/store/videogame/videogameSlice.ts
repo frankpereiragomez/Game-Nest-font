@@ -20,9 +20,20 @@ const videogameSlice = createSlice({
       ...currentVideogame,
       videogames: [...action.payload],
     }),
+    deleteVideogame: (
+      currentVideogame: VideogameState,
+      action: PayloadAction<string>
+    ): VideogameState => ({
+      ...currentVideogame,
+      videogames: currentVideogame.videogames.filter(
+        (videogame) => videogame.id !== action.payload
+      ),
+    }),
   },
 });
 
-export const { loadVideogames: loadVideogamesActionCreator } =
-  videogameSlice.actions;
+export const {
+  loadVideogames: loadVideogamesActionCreator,
+  deleteVideogame: deleteVideogameActionCreator,
+} = videogameSlice.actions;
 export const videogameReducer = videogameSlice.reducer;

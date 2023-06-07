@@ -10,6 +10,7 @@ const videogamesFactory = Factory.define<VideogamesDataStructure>(() => ({
   description: faker.commerce.productDescription(),
   developers: faker.company.name(),
   genre: faker.commerce.productDescription(),
+  user: faker.database.mongodbObjectId().toString(),
 }));
 
 export const getVideogamesDataMock = (
