@@ -1,15 +1,17 @@
-import { VideogamesStructure } from "../../types";
+import { VideogamesDataStructure } from "../../types";
 import Button from "../Button/Button";
 import VideogameCardStyled from "./VideogameCardStyled";
 
 interface VideogameCardProps {
-  videogame: VideogamesStructure;
+  videogame: VideogamesDataStructure;
   isLazy: "lazy" | "eager";
+  actionOnClick: (videogameId: string) => void;
 }
 
 const VideogameCard = ({
   videogame,
   isLazy,
+  actionOnClick,
 }: VideogameCardProps): React.ReactElement => {
   return (
     <>
@@ -49,6 +51,7 @@ const VideogameCard = ({
                 alt: "remove button",
                 height: "48",
                 width: "48",
+                actionOnClick: () => actionOnClick(videogame.id),
               }}
             />
           </div>
