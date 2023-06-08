@@ -1,11 +1,12 @@
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../utils/testUtils";
 import VideogameForm from "./VideogameForm";
 
 const testCases = [
+  "Price €:",
   "Name:",
   "Genre:",
-  "Price €:",
   "Developers:",
   "Image(url):",
   "Description:",
@@ -33,6 +34,35 @@ describe("Given a VideogameForm component", () => {
       const field = screen.getByRole("button", { name: expectedText });
 
       expect(field).toBeInTheDocument();
+    });
+  });
+
+  testCases.slice(1).forEach((label) => {
+    describe(`When it's rendered and the user write 'test example' in the field ${label}`, () => {
+      test("Then it should show the 'test example' text in the text field", async () => {
+        const inputsTest = "text example";
+
+        renderWithProviders(<VideogameForm buttonText="Create" />);
+
+        const labelField = screen.getByLabelText(label);
+
+        await userEvent.type(labelField, inputsTest);
+
+        expect(labelField).toHaveValue(inputsTest);
+      });
+    });
+  });
+  describe("When it's rendered and the user write 2 in the field 'Price'", () => {
+    test("Then it should show the number 2 in the 'Price' field", async () => {
+      const priceInput = 2;
+
+      renderWithProviders(<VideogameForm buttonText="Create" />);
+
+      const priceField = screen.getByLabelText(testCases[0]);
+
+      await userEvent.type(priceField, priceInput.toString());
+
+      expect(priceField).toHaveValue(priceInput);
     });
   });
 });

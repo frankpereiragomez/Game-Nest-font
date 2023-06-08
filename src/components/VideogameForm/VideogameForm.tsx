@@ -31,6 +31,14 @@ const VideogameForm = ({
     });
   };
 
+  const isEnable =
+    videogameFormState.name !== "" &&
+    videogameFormState.genre !== "" &&
+    videogameFormState.price !== 0 &&
+    videogameFormState.developers !== "" &&
+    videogameFormState.image !== "" &&
+    videogameFormState.description !== "";
+
   return (
     <VideogameFormStyled className="videogame-form" autoComplete="off">
       <div className="videogame-form__controls">
@@ -115,6 +123,7 @@ const VideogameForm = ({
           className: "videogame-form__button",
           type: "submit",
           text: buttonText,
+          isDisabled: !isEnable,
         }}
       ></Button>
     </VideogameFormStyled>

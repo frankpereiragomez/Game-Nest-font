@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FormStyled from "./FormStyled";
+import FormStyled from "./LoginFormStyled";
 import { LoginFormStructure, UserCredentials } from "../../types";
 import Button from "../Button/Button";
 

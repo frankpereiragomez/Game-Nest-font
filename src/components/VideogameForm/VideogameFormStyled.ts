@@ -48,6 +48,12 @@ const VideogameFormStyled = styled.form`
       margin-top: 36px;
       border: solid ${({ theme }) => theme.colors.secondary_color};
     }
+
+    &__button:disabled {
+      background-color: ${({ theme }) => theme.colors.light_color};
+      color: ${({ theme }) => theme.colors.secondary_color};
+      border: solid;
+    }
   }
 `;
 
