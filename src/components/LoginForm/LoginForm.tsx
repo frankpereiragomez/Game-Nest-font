@@ -29,7 +29,11 @@ const LoginForm = ({ submitForm }: LoginFormStructure): React.ReactElement => {
     userCredentialsState.password !== "";
 
   return (
-    <FormStyled className="login-form" onSubmit={handleLoginForm}>
+    <FormStyled
+      className="login-form"
+      autoComplete="off"
+      onSubmit={handleLoginForm}
+    >
       <div className="login-form__controls">
         <label className="login-form__label" htmlFor="username">
           Username:
