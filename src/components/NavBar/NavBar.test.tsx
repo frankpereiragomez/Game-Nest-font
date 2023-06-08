@@ -36,7 +36,7 @@ describe("Given a logoutOnClick function", () => {
         },
       ];
 
-      const logoutButtonText = "logout";
+      const logoutButtonText = "logout button";
 
       const router = createMemoryRouter(route);
 
@@ -44,9 +44,7 @@ describe("Given a logoutOnClick function", () => {
         user: expectedNewUserState,
       });
 
-      const logoutButton = screen.getByRole("button", {
-        name: logoutButtonText,
-      });
+      const logoutButton = screen.getByAltText(logoutButtonText);
 
       await userEvent.click(logoutButton);
 

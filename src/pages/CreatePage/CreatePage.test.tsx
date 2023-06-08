@@ -9,7 +9,10 @@ describe("Given a CreatePage page component", () => {
 
       renderWithProviders(<CreatePage />);
 
-      const heading = screen.getByRole("heading", { name: headingText });
+      const heading = screen.getByRole("heading", {
+        name: headingText,
+        level: 1,
+      });
 
       expect(heading).toBeInTheDocument();
     });

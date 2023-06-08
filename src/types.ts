@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface UserTokenStructure {
   id: string;
   name: string;
@@ -40,6 +42,9 @@ export interface ButtonStructure {
   width?: string;
   height?: string;
   arialLabel?: string;
+  isDisabled?: boolean;
+  children?: React.ReactElement;
+  type?: "button" | "submit" | "reset" | undefined;
 }
 export interface UiStructure {
   isLoading?: boolean;
