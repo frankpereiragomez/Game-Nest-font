@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import paths from "../../routers/path/paths";
 import { LazyLoginPage } from "../../routers/path/LazyPages/LazyPagez";
+import VideogamesPage from "../VideogamesPage/VideogamesPage";
 
 describe("Given a LoginPage component", () => {
   const expectedButtonText = "Login";
@@ -37,7 +38,7 @@ describe("Given a LoginPage component", () => {
 
       const routes: RouteObject[] = [
         { path: paths.app, element: <LoginPage /> },
-        { path: paths.homePage },
+        { path: paths.homePage, element: <VideogamesPage /> },
       ];
 
       const router = createMemoryRouter(routes);
@@ -52,7 +53,7 @@ describe("Given a LoginPage component", () => {
       await userEvent.type(passwordInput, passwordInputText);
       await userEvent.click(button);
 
-      expect(router.state.location.pathname).toBe(paths.homePage);
+      expect(router.state.location.pathname).toStrictEqual(paths.homePage);
     });
   });
 });

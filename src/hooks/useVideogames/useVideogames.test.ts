@@ -35,4 +35,34 @@ describe("Given a useApi custom hook", () => {
       expect(videogames).toBeUndefined();
     });
   });
+
+  describe("When is called the deleteVideogames function with a videogame's id", () => {
+    test("Then it should show a possitive feedback modal saying 'Your game has been successfully deleted'", async () => {
+      const expectedCode = 200;
+
+      const {
+        result: {
+          current: { deleteVideogame },
+        },
+      } = renderHook(() => useVideogames(), { wrapper: wrapper });
+
+      const response = await deleteVideogame(videogamesCollectionMock[0].id);
+
+      expect(expectedCode).toBe(response);
+    });
+
+    test("Then it should show a negative feedback modal saying 'Videogame not found'", async () => {
+      server.resetHandlers(...errorHandlers);
+
+      const {
+        result: {
+          current: { deleteVideogame },
+        },
+      } = renderHook(() => useVideogames(), { wrapper: wrapper });
+
+      const response = await deleteVideogame(videogamesCollectionMock[0].id);
+
+      expect(response).toBeUndefined();
+    });
+  });
 });

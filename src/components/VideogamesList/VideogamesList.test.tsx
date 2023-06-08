@@ -4,6 +4,7 @@ import { getVideogamesDataMock } from "../../mocks/factories/videogames/videogam
 import { renderWithProviders } from "../../utils/testUtils";
 import VideogameList from "./VideogamesList";
 import { realTokenMock } from "../../mocks/mockUser";
+import { videogamesCollectionMock } from "../../mocks/videogamesMocks";
 
 describe("Given a VideogamesList component", () => {
   describe("When it's rendered", () => {
@@ -27,7 +28,7 @@ describe("Given a VideogamesList component", () => {
 
   describe("When it's rendered with a list of videogames and the user clicks the delete button of his own videogame", () => {
     test("Then it should show a list without the deleted videogame", async () => {
-      const videogameListMock = getVideogamesDataMock(3);
+      const videogameListMock = videogamesCollectionMock;
       const buttonAltText = "remove button";
 
       renderWithProviders(<VideogameList />, {
