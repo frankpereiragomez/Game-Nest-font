@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { VideogamesStructure } from "../../types";
 import Button from "../Button/Button";
 import VideogameFormStyled from "./VideogameFormStyled";
 
@@ -8,6 +10,27 @@ interface VideogameFormProps {
 const VideogameForm = ({
   buttonText,
 }: VideogameFormProps): React.ReactElement => {
+  const initialVideogameData: Partial<VideogamesStructure> = {
+    name: "",
+    genre: "",
+    price: 0,
+    image: "",
+    developers: "",
+    description: "",
+  };
+
+  const [videogameFormState, setVideogameFormState] =
+    useState(initialVideogameData);
+
+  const onChangeUserInputs = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setVideogameFormState({
+      ...videogameFormState,
+      [event.target.id]: event.target.value,
+    });
+  };
+
   return (
     <VideogameFormStyled className="videogame-form" autoComplete="off">
       <div className="videogame-form__controls">
@@ -19,6 +42,8 @@ const VideogameForm = ({
           id="name"
           type="text"
           placeholder="Videogame name"
+          onChange={onChangeUserInputs}
+          value={videogameFormState.name}
         />
       </div>
       <div className="videogame-form__controls">
@@ -30,6 +55,8 @@ const VideogameForm = ({
           id="genre"
           type="text"
           placeholder="Videogame genre"
+          onChange={onChangeUserInputs}
+          value={videogameFormState.genre}
         />
       </div>
       <div className="videogame-form__controls">
@@ -41,6 +68,8 @@ const VideogameForm = ({
           id="price"
           type="number"
           placeholder="Videogame price"
+          onChange={onChangeUserInputs}
+          value={videogameFormState.price || ""}
         />
       </div>
       <div className="videogame-form__controls">
@@ -52,6 +81,8 @@ const VideogameForm = ({
           id="developers"
           type="text"
           placeholder="Videogame developers"
+          onChange={onChangeUserInputs}
+          value={videogameFormState.developers}
         />
       </div>
       <div className="videogame-form__controls">
@@ -63,6 +94,8 @@ const VideogameForm = ({
           id="image"
           type="text"
           placeholder="Videogame image"
+          onChange={onChangeUserInputs}
+          value={videogameFormState.image}
         />
       </div>
       <div className="videogame-form__controls">
@@ -73,6 +106,8 @@ const VideogameForm = ({
           className="videogame-form__textarea"
           id="description"
           placeholder="Videogame description"
+          onChange={onChangeUserInputs}
+          value={videogameFormState.description}
         />
       </div>
       <Button
