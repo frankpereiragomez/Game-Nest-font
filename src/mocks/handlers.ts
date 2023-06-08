@@ -15,6 +15,10 @@ export const handlers = [
       ctx.json({ videogames: videogamesCollectionMock })
     );
   }),
+
+  rest.delete(`${apiUrl}/videogames/:videogameId`, (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ message: "Videogame deleted" }));
+  }),
 ];
 
 export const errorHandlers = [
@@ -23,6 +27,10 @@ export const errorHandlers = [
   }),
 
   rest.get(`${apiUrl}/videogames`, (_req, res, ctx) => {
-    return res(ctx.status(401));
+    return res(ctx.status(500));
+  }),
+
+  rest.delete(`${apiUrl}/videogames/:videogameId`, (_req, res, ctx) => {
+    return res(ctx.status(404), ctx.json({ message: "Videogame not found" }));
   }),
 ];

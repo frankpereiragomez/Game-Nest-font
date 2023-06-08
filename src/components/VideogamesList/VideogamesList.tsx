@@ -1,14 +1,14 @@
-import { useAppDispatch, useAppSelector } from "../../store";
-import { deleteVideogameActionCreator } from "../../store/videogame/videogameSlice";
+import useVideogames from "../../hooks/useVideogames/useVideogames";
+import { useAppSelector } from "../../store";
 import VideogameCard from "../VideogameCard/VideogameCard";
 import VideogamesListStyled from "./VideogamesListStyled";
 
 const VideogameList = (): React.ReactElement => {
   const videogames = useAppSelector((state) => state.videogames.videogames);
-  const dispatch = useAppDispatch();
+  const { deleteVideogame } = useVideogames();
 
-  const deleteOnClick = (videogameId: string) => {
-    dispatch(deleteVideogameActionCreator(videogameId));
+  const deleteOnClick = async (videogameId: string) => {
+    await deleteVideogame(videogameId);
   };
 
   return (
