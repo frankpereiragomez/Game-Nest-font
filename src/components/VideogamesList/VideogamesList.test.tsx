@@ -34,7 +34,7 @@ describe("Given a VideogamesList component", () => {
       renderWithProviders(<VideogameList />, {
         user: {
           isLogged: true,
-          id: videogameListMock[0].user,
+          id: videogameListMock[0].user as string,
           token: realTokenMock,
           name: videogameListMock[0].name,
         },

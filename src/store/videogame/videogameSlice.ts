@@ -29,11 +29,19 @@ const videogameSlice = createSlice({
         (videogame) => videogame.id !== action.payload
       ),
     }),
+    createVideogame: (
+      currentVideogame: VideogameState,
+      action: PayloadAction<VideogamesDataStructure>
+    ): VideogameState => ({
+      ...currentVideogame,
+      videogames: [...currentVideogame.videogames, action.payload],
+    }),
   },
 });
 
 export const {
   loadVideogames: loadVideogamesActionCreator,
   deleteVideogame: deleteVideogameActionCreator,
+  createVideogame: createVideogameActionCreator,
 } = videogameSlice.actions;
 export const videogameReducer = videogameSlice.reducer;

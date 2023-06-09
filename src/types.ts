@@ -26,7 +26,7 @@ export interface VideogamesStructure {
   developers: string;
   price: number;
   description: string;
-  user: string;
+  user?: string;
 }
 
 export interface VideogamesDataStructure extends VideogamesStructure {
