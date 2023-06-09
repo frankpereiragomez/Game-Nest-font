@@ -1,17 +1,18 @@
 import { useState } from "react";
-import { VideogamesDataStructure } from "../../types";
+import { VideogamesStructure } from "../../types";
 import Button from "../Button/Button";
 import VideogameFormStyled from "./VideogameFormStyled";
 
 interface VideogameFormProps {
   buttonText: string;
-  actionOnSubmit: (newVideogame: VideogamesDataStructure) => void;
+  actionOnSubmit: (newVideogame: VideogamesStructure) => void;
 }
 
 const VideogameForm = ({
   buttonText,
+  actionOnSubmit,
 }: VideogameFormProps): React.ReactElement => {
-  const initialVideogameData: Partial<VideogamesDataStructure> = {
+  const initialVideogameData: VideogamesStructure = {
     name: "",
     genre: "",
     price: 0,
@@ -34,6 +35,7 @@ const VideogameForm = ({
 
   const handleCreateForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    actionOnSubmit(videogameFormState);
     setVideogameFormState(initialVideogameData);
   };
 
@@ -110,7 +112,7 @@ const VideogameForm = ({
         <input
           className="videogame-form__input"
           id="image"
-          type="text"
+          type="url"
           placeholder="Videogame image"
           onChange={onChangeUserInputs}
           value={videogameFormState.image}

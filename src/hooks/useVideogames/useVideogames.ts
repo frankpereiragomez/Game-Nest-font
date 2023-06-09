@@ -5,7 +5,7 @@ import {
 } from "../../store/videogame/videogameSlice";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { apiUrl } from "../../mocks/handlers";
-import { VideogamesDataStructure } from "../../types";
+import { VideogamesDataStructure, VideogamesStructure } from "../../types";
 import { useCallback } from "react";
 import {
   hideLoadingActionCreator,
@@ -17,6 +17,10 @@ import feedbackMessages from "../../utils/feedbackMessages/feedbackMessages";
 const useVideogames = () => {
   const dispatch = useAppDispatch();
   const { token } = useAppSelector((state) => state.user);
+
+  const reqConfig = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
 
   const getVideogames = useCallback(async (): Promise<
     VideogamesDataStructure[] | undefined
@@ -50,9 +54,7 @@ const useVideogames = () => {
     try {
       const { status } = await axios.delete(
         `${apiUrl}/videogames/${videogameId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+        reqConfig
       );
 
       dispatch(deleteVideogameActionCreator(videogameId));
@@ -78,7 +80,36 @@ const useVideogames = () => {
     }
   };
 
-  return { getVideogames, deleteVideogame };
+  const createVideogame = async (
+    videogame: VideogamesStructure
+  ): Promise<VideogamesDataStructure | undefined> => {
+    dispatch(showLoadingActionCreator());
+    try {
+      const { data } = await axios.post<{
+        videogame: VideogamesDataStructure;
+      }>(`${apiUrl}/videogames/create`, videogame, reqConfig);
+
+      dispatch(hideLoadingActionCreator());
+
+      dispatch(
+        showFeedbackActionCreator({
+          isError: false,
+          message: feedbackMessages.createOk,
+        })
+      );
+
+      return data.videogame;
+    } catch (error) {
+      dispatch(
+        showFeedbackActionCreator({
+          isError: true,
+          message: feedbackMessages.createFailed,
+        })
+      );
+    }
+  };
+
+  return { getVideogames, deleteVideogame, createVideogame };
 };
 
 export default useVideogames;

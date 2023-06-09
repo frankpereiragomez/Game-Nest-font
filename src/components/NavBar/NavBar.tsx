@@ -24,7 +24,7 @@ const NavBar = (): React.ReactElement => {
       <ul className="navigation-menu">
         <li>
           <NavLink
-            to="/home-page"
+            to={paths.homePage}
             className="navigation-menu__home-button"
             aria-label="home"
           >
@@ -39,7 +39,7 @@ const NavBar = (): React.ReactElement => {
         </li>
         <li>
           <NavLink
-            to="/add-game"
+            to={paths.createPage}
             className="navigation-menu__add-button"
             aria-label="add"
           >

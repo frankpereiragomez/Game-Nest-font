@@ -1,15 +1,26 @@
 import React from "react";
 import CreatePageStyled from "./CreatePageStyled";
 import VideogameForm from "../../components/VideogameForm/VideogameForm";
-import { VideogamesDataStructure } from "../../types";
+import { VideogamesStructure } from "../../types";
 import { useAppDispatch } from "../../store";
 import { createVideogameActionCreator } from "../../store/videogame/videogameSlice";
+import useVideogames from "../../hooks/useVideogames/useVideogames";
+import { useNavigate } from "react-router-dom";
+import paths from "../../routers/path/paths";
 
 const CreatePage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
+  const { createVideogame } = useVideogames();
+  const navigate = useNavigate();
 
-  const createOnSubmit = (newVideogame: VideogamesDataStructure) => {
-    dispatch(createVideogameActionCreator(newVideogame));
+  const createOnSubmit = async (newVideogame: VideogamesStructure) => {
+    const videogame = await createVideogame(newVideogame);
+
+    if (videogame) {
+      dispatch(createVideogameActionCreator(videogame));
+
+      navigate(paths.homePage);
+    }
   };
 
   return (
