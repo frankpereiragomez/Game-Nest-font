@@ -45,7 +45,7 @@ describe("Given a VideogameCard component", () => {
         {
           user: {
             isLogged: true,
-            id: videogamesFactoryMock[0].user,
+            id: videogamesFactoryMock[0].user as string,
             name: videogamesFactoryMock[0].name,
             token: realTokenMock,
           },
