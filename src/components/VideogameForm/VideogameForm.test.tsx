@@ -2,6 +2,7 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../utils/testUtils";
 import VideogameForm from "./VideogameForm";
+import { vi } from "vitest";
 
 const testCases = [
   "Price €:",
@@ -12,13 +13,20 @@ const testCases = [
   "Description:",
 ];
 
+const actionOnSubmit = vi.fn();
+
 describe("Given a VideogameForm component", () => {
   const inputsTest = "text example";
 
   testCases.forEach((expectedText) => {
     describe("When it is rendered", () => {
       test(`Then it should show a text field with the label '${expectedText}'`, () => {
-        renderWithProviders(<VideogameForm buttonText={expectedText} />);
+        renderWithProviders(
+          <VideogameForm
+            actionOnSubmit={actionOnSubmit(0)}
+            buttonText={expectedText}
+          />
+        );
 
         const field = screen.getByLabelText(expectedText);
 
@@ -31,7 +39,12 @@ describe("Given a VideogameForm component", () => {
     test("Then it should show a button with the text 'Create'", () => {
       const expectedText = "Create";
 
-      renderWithProviders(<VideogameForm buttonText={expectedText} />);
+      renderWithProviders(
+        <VideogameForm
+          actionOnSubmit={actionOnSubmit(2)}
+          buttonText={expectedText}
+        />
+      );
 
       const field = screen.getByRole("button", { name: expectedText });
 
@@ -42,7 +55,12 @@ describe("Given a VideogameForm component", () => {
   testCases.slice(1).forEach((label) => {
     describe(`When it's rendered and the user write 'test example' in the field ${label}`, () => {
       test("Then it should show the 'test example' text in the text field", async () => {
-        renderWithProviders(<VideogameForm buttonText="Create" />);
+        renderWithProviders(
+          <VideogameForm
+            actionOnSubmit={actionOnSubmit(2)}
+            buttonText="Create"
+          />
+        );
 
         const labelField = screen.getByLabelText(label);
 
@@ -56,7 +74,9 @@ describe("Given a VideogameForm component", () => {
     test("Then it should show the number 2 in the 'Price:' field", async () => {
       const priceInput = 2;
 
-      renderWithProviders(<VideogameForm buttonText="Create" />);
+      renderWithProviders(
+        <VideogameForm actionOnSubmit={actionOnSubmit(4)} buttonText="Create" />
+      );
 
       const priceField = screen.getByLabelText(testCases[0]);
 
@@ -68,7 +88,9 @@ describe("Given a VideogameForm component", () => {
 
   describe("When it's rendered and the inputs fields are not filled", () => {
     test("Then it should show an disabled Create button", () => {
-      renderWithProviders(<VideogameForm buttonText="Create" />);
+      renderWithProviders(
+        <VideogameForm actionOnSubmit={actionOnSubmit(2)} buttonText="Create" />
+      );
 
       const button = screen.getByRole("button");
 
@@ -81,7 +103,12 @@ describe("Given a VideogameForm component", () => {
       const priceInput = 32;
       const buttonText = "Create";
 
-      renderWithProviders(<VideogameForm buttonText={buttonText} />);
+      renderWithProviders(
+        <VideogameForm
+          actionOnSubmit={actionOnSubmit(3)}
+          buttonText={buttonText}
+        />
+      );
 
       const priceField = screen.getByLabelText(testCases[0]);
 
