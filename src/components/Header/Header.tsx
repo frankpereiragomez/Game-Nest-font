@@ -11,8 +11,8 @@ const Header = (): React.ReactElement => {
             className="header__logo"
             src="images/Logo.svg"
             alt="Game nest logo"
-            width={70}
-            height={48}
+            width="70"
+            height="48"
           />
         </NavLink>
         <h1 className="header__title">Game Nest</h1>

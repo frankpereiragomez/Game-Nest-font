@@ -7,6 +7,7 @@ import {
   LazyNotFoundPage,
   LazyVideogamesPage,
 } from "./path/LazyPages/LazyPagez";
+import CreatePage from "../pages/CreatePage/CreatePage";
 
 const routes: RouteObject[] = [
   {
@@ -32,6 +33,10 @@ const routes: RouteObject[] = [
             <LazyLoginPage />
           </Suspense>
         ),
+      },
+      {
+        path: "/create-form",
+        element: <CreatePage />,
       },
       {
         path: paths.notFound,

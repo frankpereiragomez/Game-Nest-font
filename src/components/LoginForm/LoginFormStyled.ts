@@ -5,7 +5,7 @@ const FormStyled = styled.form`
   flex-direction: column;
   background-color: #ffffffb3;
   border-radius: 12px;
-  padding: 25px 25px;
+  padding: 25px;
   min-width: 270px;
   min-height: 318px;
   gap: 15px;

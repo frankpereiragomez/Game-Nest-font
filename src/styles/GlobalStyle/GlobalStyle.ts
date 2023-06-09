@@ -33,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   button,
-  input {
+  input, textarea {
     font-family: inherit;
     padding: 5px 10px;
     border:none;

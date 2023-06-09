@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import FormStyled from "./FormStyled";
+import FormStyled from "./LoginFormStyled";
 import { LoginFormStructure, UserCredentials } from "../../types";
+import Button from "../Button/Button";
 
 const LoginForm = ({ submitForm }: LoginFormStructure): React.ReactElement => {
   const initialUserCredentials: UserCredentials = {
@@ -60,9 +61,14 @@ const LoginForm = ({ submitForm }: LoginFormStructure): React.ReactElement => {
           value={userCredentialsState.password}
         />
       </div>
-      <button className="login-form__button" type="submit" disabled={!isEnable}>
-        Login
-      </button>
+      <Button
+        button={{
+          className: "login-form__button",
+          type: "submit",
+          isDisabled: !isEnable,
+          text: "Login",
+        }}
+      ></Button>
     </FormStyled>
   );
 };

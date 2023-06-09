@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
 import { logoutActionCreator } from "../../store/user/userSlice";
 import paths from "../../routers/path/paths";
+import Button from "../Button/Button";
 
 const NavBar = (): React.ReactElement => {
   const { deleteToken } = useLocalStorage();
@@ -53,19 +54,17 @@ const NavBar = (): React.ReactElement => {
         </li>
         <li>
           {isLogged ? (
-            <button
-              className="navigation-menu__logout-button"
-              aria-label="logout"
-              onClick={logoutOnClick}
-            >
-              <img
-                className="logout"
-                src="images/logout-button.svg"
-                alt="logout button"
-                width={48}
-                height={48}
-              />
-            </button>
+            <Button
+              button={{
+                className: "navigation-menu__logout-button",
+                arialLabel: "logout",
+                actionOnClick: () => logoutOnClick(),
+                icon: "images/logout-button.svg",
+                alt: "logout button",
+                width: "48",
+                height: "48",
+              }}
+            />
           ) : (
             <NavLink
               to={paths.login}
