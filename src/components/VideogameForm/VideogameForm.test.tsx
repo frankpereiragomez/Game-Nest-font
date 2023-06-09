@@ -13,6 +13,8 @@ const testCases = [
 ];
 
 describe("Given a VideogameForm component", () => {
+  const inputsTest = "text example";
+
   testCases.forEach((expectedText) => {
     describe("When it is rendered", () => {
       test(`Then it should show a text field with the label '${expectedText}'`, () => {
@@ -40,8 +42,6 @@ describe("Given a VideogameForm component", () => {
   testCases.slice(1).forEach((label) => {
     describe(`When it's rendered and the user write 'test example' in the field ${label}`, () => {
       test("Then it should show the 'test example' text in the text field", async () => {
-        const inputsTest = "text example";
-
         renderWithProviders(<VideogameForm buttonText="Create" />);
 
         const labelField = screen.getByLabelText(label);
@@ -52,8 +52,8 @@ describe("Given a VideogameForm component", () => {
       });
     });
   });
-  describe("When it's rendered and the user write 2 in the field 'Price'", () => {
-    test("Then it should show the number 2 in the 'Price' field", async () => {
+  describe("When it's rendered and the user write 2 in the field 'Price:'", () => {
+    test("Then it should show the number 2 in the 'Price:' field", async () => {
       const priceInput = 2;
 
       renderWithProviders(<VideogameForm buttonText="Create" />);
@@ -63,6 +63,44 @@ describe("Given a VideogameForm component", () => {
       await userEvent.type(priceField, priceInput.toString());
 
       expect(priceField).toHaveValue(priceInput);
+    });
+  });
+
+  describe("When it's rendered and the inputs fields are not filled", () => {
+    test("Then it should show an disabled Create button", () => {
+      renderWithProviders(<VideogameForm buttonText="Create" />);
+
+      const button = screen.getByRole("button");
+
+      expect(button).toBeDisabled();
+    });
+  });
+
+  describe("When it's rendered with all the inputs fields filled", () => {
+    test("Then it should show an enable button with the text 'Create'", async () => {
+      const priceInput = 32;
+      const buttonText = "Create";
+
+      renderWithProviders(<VideogameForm buttonText={buttonText} />);
+
+      const priceField = screen.getByLabelText(testCases[0]);
+
+      const nameField = screen.getByLabelText(testCases[1]);
+      const genreField = screen.getByLabelText(testCases[2]);
+      const developersField = screen.getByLabelText(testCases[3]);
+      const imageUrlField = screen.getByLabelText(testCases[4]);
+      const descriptionField = screen.getByLabelText(testCases[5]);
+
+      await userEvent.type(nameField, inputsTest);
+      await userEvent.type(genreField, inputsTest);
+      await userEvent.type(developersField, inputsTest);
+      await userEvent.type(imageUrlField, inputsTest);
+      await userEvent.type(descriptionField, inputsTest);
+      await userEvent.type(priceField, priceInput.toString());
+
+      const button = screen.getByRole("button");
+
+      expect(button).toBeEnabled();
     });
   });
 });
