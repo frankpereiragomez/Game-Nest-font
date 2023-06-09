@@ -14,6 +14,17 @@ const VideogamesPage = (): React.ReactElement => {
       const videogames = await getVideogames();
       if (videogames) {
         dispatch(loadVideogamesActionCreator(videogames));
+
+        const firstVideogameImage = videogames[0].image;
+
+        const preconnectElement = document.createElement("link");
+        preconnectElement.rel = "preload";
+        preconnectElement.as = "image";
+        preconnectElement.href = firstVideogameImage;
+
+        const parentElement = document.head;
+        const firstChild = parentElement.firstChild;
+        parentElement.insertBefore(preconnectElement, firstChild);
       }
     })();
   }, [dispatch, getVideogames]);
