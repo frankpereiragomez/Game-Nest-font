@@ -1,11 +1,18 @@
 import { renderHook } from "@testing-library/react";
+import { vi } from "vitest";
 import useVideogames from "./useVideogames";
 import { videogamesCollectionMock } from "../../mocks/videogamesMocks";
 import { wrapper } from "../../utils/testUtils";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
+import { store } from "../../store";
+import FeedbackMessages from "../../utils/feedbackMessages/feedbackMessages";
 
-describe("Given a useApi custom hook", () => {
+beforeEach(() => {
+  vi.clearAllMocks();
+});
+
+describe("Given a useVideogames custom hook", () => {
   describe("When is called with the getVideogames function", () => {
     test("Then it should return a list of videogames", async () => {
       const {
@@ -63,6 +70,40 @@ describe("Given a useApi custom hook", () => {
       const response = await deleteVideogame(videogamesCollectionMock[0].id);
 
       expect(response).toBeUndefined();
+    });
+  });
+
+  describe("When  is called the createVideogame function and receives 'The Legend of Zelda: Tears of the Kingdom' videogame", () => {
+    test("Then it should return the 'The Legend of Zelda: Tears of the Kingdom' videogame", async () => {
+      const expectedVideogame = videogamesCollectionMock[0];
+
+      const {
+        result: {
+          current: { createVideogame },
+        },
+      } = renderHook(() => useVideogames(), { wrapper: wrapper });
+
+      const newVideogame = await createVideogame(expectedVideogame);
+
+      expect(newVideogame).toStrictEqual(expectedVideogame);
+    });
+  });
+
+  describe("When is called the createVideogame function and cannot create the new videogame", () => {
+    test("Then it should show a feedback modal with 'Your game could not be deleted' error message", async () => {
+      server.resetHandlers(...errorHandlers);
+
+      const {
+        result: {
+          current: { createVideogame },
+        },
+      } = renderHook(() => useVideogames(), { wrapper: wrapper });
+
+      await createVideogame(videogamesCollectionMock[0]);
+
+      const errorMessage = store.getState().ui.message;
+
+      expect(errorMessage).toBe(FeedbackMessages.createFailed);
     });
   });
 });

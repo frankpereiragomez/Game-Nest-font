@@ -1,8 +1,8 @@
-import { FeedbackMessages as feedbackMessages } from "./types";
+import { FeedbackMessages as FeedbackMessages } from "./types";
 
-const feedbackMessages: feedbackMessages = {
+const FeedbackMessages: FeedbackMessages = {
   createOk: "Your game has been successfully created.",
-  createFailed: "Your game has been successfully deleted",
+  createFailed: "Your game could not be deleted",
   credentialsWrong: "Wrong credentials !",
   deleteFailed: "Your game could not be deleted",
   deleteOk: "Your game was successfully deleted",
@@ -13,4 +13,4 @@ const feedbackMessages: feedbackMessages = {
   goBack: "Go Back",
 };
 
-export default feedbackMessages;
+export default FeedbackMessages;

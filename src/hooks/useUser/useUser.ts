@@ -8,7 +8,7 @@ import {
   showFeedbackActionCreator,
   showLoadingActionCreator,
 } from "../../store/ui/uiSlice";
-import feedbackMessages from "../../utils/feedbackMessages/feedbackMessages";
+import FeedbackMessages from "../../utils/feedbackMessages/feedbackMessages";
 
 const useUser = () => {
   const dispatch = useAppDispatch();
@@ -31,7 +31,7 @@ const useUser = () => {
         dispatch(
           showFeedbackActionCreator({
             isError: true,
-            message: feedbackMessages.credentialsWrong,
+            message: FeedbackMessages.credentialsWrong,
           })
         );
       }

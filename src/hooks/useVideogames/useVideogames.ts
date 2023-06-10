@@ -12,7 +12,7 @@ import {
   showFeedbackActionCreator,
   showLoadingActionCreator,
 } from "../../store/ui/uiSlice";
-import feedbackMessages from "../../utils/feedbackMessages/feedbackMessages";
+import FeedbackMessages from "../../utils/feedbackMessages/feedbackMessages";
 
 const useVideogames = () => {
   const dispatch = useAppDispatch();
@@ -40,7 +40,7 @@ const useVideogames = () => {
       dispatch(
         showFeedbackActionCreator({
           isError: true,
-          message: feedbackMessages.somethingWrong,
+          message: FeedbackMessages.somethingWrong,
         })
       );
     }
@@ -64,7 +64,7 @@ const useVideogames = () => {
       dispatch(
         showFeedbackActionCreator({
           isError: false,
-          message: feedbackMessages.deleteOk,
+          message: FeedbackMessages.deleteOk,
         })
       );
 
@@ -74,7 +74,7 @@ const useVideogames = () => {
       dispatch(
         showFeedbackActionCreator({
           isError: true,
-          message: feedbackMessages.deleteFailed,
+          message: FeedbackMessages.deleteFailed,
         })
       );
     }
@@ -94,7 +94,7 @@ const useVideogames = () => {
       dispatch(
         showFeedbackActionCreator({
           isError: false,
-          message: feedbackMessages.createOk,
+          message: FeedbackMessages.createOk,
         })
       );
 
@@ -103,7 +103,7 @@ const useVideogames = () => {
       dispatch(
         showFeedbackActionCreator({
           isError: true,
-          message: feedbackMessages.createFailed,
+          message: FeedbackMessages.createFailed,
         })
       );
     }
