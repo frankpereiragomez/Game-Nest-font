@@ -11,3 +11,7 @@ export const LazyVideogamesPage = lazy(
 export const LazyNotFoundPage = lazy(
   () => import("../../../pages/PageNotFound/PageNotFound.tsx")
 );
+
+export const LazyCreatePage = lazy(
+  () => import("../../../pages/CreatePage/CreatePage.tsx")
+);
