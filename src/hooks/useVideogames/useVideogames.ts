@@ -84,6 +84,7 @@ const useVideogames = () => {
     videogame: VideogamesStructure
   ): Promise<VideogamesDataStructure | undefined> => {
     dispatch(showLoadingActionCreator());
+
     try {
       const { data } = await axios.post<{
         videogame: VideogamesDataStructure;
