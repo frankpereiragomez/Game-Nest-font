@@ -19,6 +19,13 @@ export const handlers = [
   rest.delete(`${apiUrl}/videogames/:videogameId`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ message: "Videogame deleted" }));
   }),
+
+  rest.post(`${apiUrl}/videogames/create`, (_req, res, ctx) => {
+    return res(
+      ctx.status(201),
+      ctx.json({ videogame: videogamesCollectionMock[0] })
+    );
+  }),
 ];
 
 export const errorHandlers = [
