@@ -35,7 +35,7 @@ const routes: RouteObject[] = [
         ),
       },
       {
-        path: "/create-form",
+        path: paths.createPage,
         element: <CreatePage />,
       },
       {

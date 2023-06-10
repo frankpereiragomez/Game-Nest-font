@@ -37,3 +37,13 @@ export const videogamesCollectionMock: VideogamesDataStructure[] = [
     user: "646fa078f583d0a4152044a8",
   },
 ];
+
+export const videogameWithoutIdAndUser = {
+  description: "An epic adventure awaits in the mystical kingdom of Hyrule.",
+  developers: "Nintendo",
+  genre: "Adventure",
+  name: "The Legend of Zelda: Tears of the Kingdom",
+  price: "59.99",
+  image:
+    "https://static.xtralife.com/conversions/QJC9-8D4Q413478-fullhd_w1920_h1080_q75-switchthelegendofxelda2-1663083706.webp",
+};

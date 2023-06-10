@@ -5,18 +5,22 @@ import {
 } from "../../store/videogame/videogameSlice";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { apiUrl } from "../../mocks/handlers";
-import { VideogamesDataStructure } from "../../types";
+import { VideogamesDataStructure, VideogamesStructure } from "../../types";
 import { useCallback } from "react";
 import {
   hideLoadingActionCreator,
   showFeedbackActionCreator,
   showLoadingActionCreator,
 } from "../../store/ui/uiSlice";
-import feedbackMessages from "../../utils/feedbackMessages/feedbackMessages";
+import FeedbackMessages from "../../utils/feedbackMessages/feedbackMessages";
 
 const useVideogames = () => {
   const dispatch = useAppDispatch();
   const { token } = useAppSelector((state) => state.user);
+
+  const reqConfig = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
 
   const getVideogames = useCallback(async (): Promise<
     VideogamesDataStructure[] | undefined
@@ -36,7 +40,7 @@ const useVideogames = () => {
       dispatch(
         showFeedbackActionCreator({
           isError: true,
-          message: feedbackMessages.somethingWrong,
+          message: FeedbackMessages.somethingWrong,
         })
       );
     }
@@ -50,9 +54,7 @@ const useVideogames = () => {
     try {
       const { status } = await axios.delete(
         `${apiUrl}/videogames/${videogameId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+        reqConfig
       );
 
       dispatch(deleteVideogameActionCreator(videogameId));
@@ -62,7 +64,7 @@ const useVideogames = () => {
       dispatch(
         showFeedbackActionCreator({
           isError: false,
-          message: feedbackMessages.deleteOk,
+          message: FeedbackMessages.deleteOk,
         })
       );
 
@@ -72,13 +74,42 @@ const useVideogames = () => {
       dispatch(
         showFeedbackActionCreator({
           isError: true,
-          message: feedbackMessages.deleteFailed,
+          message: FeedbackMessages.deleteFailed,
         })
       );
     }
   };
 
-  return { getVideogames, deleteVideogame };
+  const createVideogame = async (
+    videogame: VideogamesStructure
+  ): Promise<VideogamesDataStructure | undefined> => {
+    dispatch(showLoadingActionCreator());
+    try {
+      const { data } = await axios.post<{
+        videogame: VideogamesDataStructure;
+      }>(`${apiUrl}/videogames/create`, videogame, reqConfig);
+
+      dispatch(hideLoadingActionCreator());
+
+      dispatch(
+        showFeedbackActionCreator({
+          isError: false,
+          message: FeedbackMessages.createOk,
+        })
+      );
+
+      return data.videogame;
+    } catch (error) {
+      dispatch(
+        showFeedbackActionCreator({
+          isError: true,
+          message: FeedbackMessages.createFailed,
+        })
+      );
+    }
+  };
+
+  return { getVideogames, deleteVideogame, createVideogame };
 };
 
 export default useVideogames;

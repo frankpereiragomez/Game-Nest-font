@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import feedbackMessages from "../../utils/feedbackMessages/feedbackMessages";
+import FeedbackMessages from "../../utils/feedbackMessages/feedbackMessages";
 import paths from "../../routers/path/paths";
 import PageNotFoundStyled from "./PageNotFoundStyled";
 import Button from "../../components/Button/Button";
@@ -16,13 +16,13 @@ const PageNotFound = (): React.ReactElement => {
       <article className="info-container">
         <span className="info-container__status-code">404</span>
         <h1 className="info-container__message">
-          {feedbackMessages.pageNotFound}
+          {FeedbackMessages.pageNotFound}
         </h1>
         <Button
           button={{
             className: "info-container__button",
             actionOnClick,
-            text: feedbackMessages.goBack,
+            text: FeedbackMessages.goBack,
           }}
         />
       </article>

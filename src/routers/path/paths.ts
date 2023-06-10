@@ -4,6 +4,7 @@ const paths: PathsStructure = {
   app: "/",
   login: "/login",
   homePage: "/home-page",
+  createPage: "/create-page",
   notFound: "*",
 };
 

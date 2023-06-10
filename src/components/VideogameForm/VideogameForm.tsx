@@ -5,12 +5,14 @@ import VideogameFormStyled from "./VideogameFormStyled";
 
 interface VideogameFormProps {
   buttonText: string;
+  actionOnSubmit: (newVideogame: VideogamesStructure) => void;
 }
 
 const VideogameForm = ({
   buttonText,
+  actionOnSubmit,
 }: VideogameFormProps): React.ReactElement => {
-  const initialVideogameData: Partial<VideogamesStructure> = {
+  const initialVideogameData: VideogamesStructure = {
     name: "",
     genre: "",
     price: 0,
@@ -31,6 +33,12 @@ const VideogameForm = ({
     });
   };
 
+  const handleCreateForm = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    actionOnSubmit(videogameFormState);
+    setVideogameFormState(initialVideogameData);
+  };
+
   const isEnable =
     videogameFormState.name !== "" &&
     videogameFormState.genre !== "" &&
@@ -40,7 +48,11 @@ const VideogameForm = ({
     videogameFormState.description !== "";
 
   return (
-    <VideogameFormStyled className="videogame-form" autoComplete="off">
+    <VideogameFormStyled
+      className="videogame-form"
+      autoComplete="off"
+      onSubmit={handleCreateForm}
+    >
       <div className="videogame-form__controls">
         <label className="videogame-form__label" htmlFor="name">
           Name:
@@ -100,7 +112,7 @@ const VideogameForm = ({
         <input
           className="videogame-form__input"
           id="image"
-          type="text"
+          type="url"
           placeholder="Videogame image"
           onChange={onChangeUserInputs}
           value={videogameFormState.image}
