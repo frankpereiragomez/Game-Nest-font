@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-  VideogameState,
+  VideogameStateResponse,
   deleteVideogameActionCreator,
 } from "../../store/videogame/videogameSlice";
 import { useAppDispatch, useAppSelector } from "../../store";
@@ -22,29 +22,35 @@ const useVideogames = () => {
     headers: { Authorization: `Bearer ${token}` },
   };
 
-  const getVideogames = useCallback(async (): Promise<
-    VideogamesDataStructure[] | undefined
-  > => {
-    dispatch(showLoadingActionCreator());
+  const getVideogames = useCallback(
+    async (
+      skip: number,
+      limit: number
+    ): Promise<VideogameStateResponse | undefined> => {
+      dispatch(showLoadingActionCreator());
 
-    try {
-      const {
-        data: { videogames },
-      } = await axios.get<VideogameState>(`${apiUrl}/videogames`);
+      try {
+        const {
+          data: { videogames, totalVideogames },
+        } = await axios.get<VideogameStateResponse>(
+          `${apiUrl}/videogames?skip=${skip}&limit=${limit}`
+        );
 
-      dispatch(hideLoadingActionCreator());
+        dispatch(hideLoadingActionCreator());
 
-      return videogames;
-    } catch (error) {
-      dispatch(hideLoadingActionCreator());
-      dispatch(
-        showFeedbackActionCreator({
-          isError: true,
-          message: FeedbackMessages.somethingWrong,
-        })
-      );
-    }
-  }, [dispatch]);
+        return { videogames, totalVideogames };
+      } catch (error) {
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showFeedbackActionCreator({
+            isError: true,
+            message: FeedbackMessages.somethingWrong,
+          })
+        );
+      }
+    },
+    [dispatch]
+  );
 
   const deleteVideogame = async (
     videogameId: string
