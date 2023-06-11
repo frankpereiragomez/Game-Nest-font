@@ -6,7 +6,6 @@ import { useAppSelector } from "../../store";
 import Loading from "../Ui/Loading/Loading";
 import UserFeedback from "../Ui/UserFeedback/UserFeedback";
 import paths from "../../routers/path/paths";
-import Pagination from "../Pagination/Pagination";
 
 const Layout = (): React.ReactElement => {
   const { pathname } = useLocation();
@@ -20,7 +19,6 @@ const Layout = (): React.ReactElement => {
       <Header />
       <GeneralContainerStyled className="body-container">
         <Outlet />
-        {pathname !== paths.login && <Pagination />}
       </GeneralContainerStyled>
       {pathname !== paths.login && <NavBar />}
     </>

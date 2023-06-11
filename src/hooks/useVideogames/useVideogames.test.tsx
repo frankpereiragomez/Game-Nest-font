@@ -13,6 +13,9 @@ beforeEach(() => {
 });
 
 describe("Given a useVideogames custom hook", () => {
+  const limit = 9;
+  const skip = 0;
+
   describe("When is called with the getVideogames function", () => {
     test("Then it should return a list of videogames", async () => {
       const {
@@ -21,7 +24,9 @@ describe("Given a useVideogames custom hook", () => {
         },
       } = renderHook(() => useVideogames(), { wrapper: wrapper });
 
-      const videogames = await getVideogames();
+      const videogamesState = await getVideogames(skip, limit);
+
+      const videogames = videogamesState?.videogames;
 
       expect(videogames).toStrictEqual(videogamesCollectionMock);
     });
@@ -37,7 +42,7 @@ describe("Given a useVideogames custom hook", () => {
         },
       } = renderHook(() => useVideogames(), { wrapper: wrapper });
 
-      const videogames = await getVideogames();
+      const videogames = await getVideogames(skip, limit);
 
       expect(videogames).toBeUndefined();
     });
