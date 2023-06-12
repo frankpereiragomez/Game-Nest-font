@@ -12,6 +12,7 @@ const Button = ({ button }: ButtonProps): React.ReactElement => {
         onClick={button.actionOnClick}
         type={button.type}
         disabled={button.isDisabled}
+        aria-label={button.ariaLabel}
       >
         {button.text || (
           <img

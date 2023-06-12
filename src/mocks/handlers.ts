@@ -2,8 +2,11 @@ import { rest } from "msw";
 import { realTokenMock } from "./mockUser";
 import { videogamesCollectionMock } from "./videogamesMocks";
 import FeedbackMessages from "../utils/feedbackMessages/feedbackMessages";
+import { getVideogamesDataMock } from "./factories/videogames/videogamesFactory";
 
 export const apiUrl = import.meta.env.VITE_APP_API_URL;
+
+export const videogamesFactory = getVideogamesDataMock(12);
 
 export const handlers = [
   rest.post(`${apiUrl}/user/login`, (_req, res, ctx) => {
@@ -46,6 +49,22 @@ export const errorHandlers = [
     return res(
       ctx.status(400),
       ctx.json({ message: FeedbackMessages.createFailed })
+    );
+  }),
+];
+
+export const paginationHandlers = [
+  rest.get(`${apiUrl}/videogames`, (req, res, ctx) => {
+    const searchParams = req.url.searchParams;
+    searchParams.set("skip", "0");
+    searchParams.set("limit", "5");
+
+    return res(
+      ctx.status(200),
+      ctx.json({
+        videogames: videogamesFactory,
+        totalVideogames: videogamesFactory.length,
+      })
     );
   }),
 ];

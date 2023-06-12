@@ -25,7 +25,7 @@ export const videogamesCollectionMock: VideogamesDataStructure[] = [
     user: "646fa078f583d0a4152044a8",
   },
   {
-    id: "6474c186f583a0a4152044af",
+    id: "6474c186f583a0a4152s44af",
     description:
       "Help Luigi rescue his friends from the haunted Last Resort hotel.",
     developers: "Next Level Games",

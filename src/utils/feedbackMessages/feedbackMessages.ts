@@ -2,7 +2,7 @@ import { FeedbackMessages as FeedbackMessages } from "./types";
 
 const FeedbackMessages: FeedbackMessages = {
   createOk: "Your game has been successfully created.",
-  createFailed: "Your game could not be deleted",
+  createFailed: "Your game could not be created",
   credentialsWrong: "Wrong credentials !",
   deleteFailed: "Your game could not be deleted",
   deleteOk: "Your game was successfully deleted",

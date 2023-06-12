@@ -5,6 +5,10 @@ export interface VideogameState {
   videogames: VideogamesDataStructure[];
 }
 
+export interface VideogameStateResponse extends VideogameState {
+  totalVideogames: number;
+}
+
 export const initialVideogameState: VideogameState = {
   videogames: [],
 };
