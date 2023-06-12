@@ -25,6 +25,7 @@ const Pagination = ({
     <PaginationStyled className="pagination">
       <Button
         button={{
+          ariaLabel: "back button",
           className: "go-back-button",
           icon: "images/icon-back.svg",
           alt: "go back icon",
@@ -39,11 +40,13 @@ const Pagination = ({
       </span>
       <Button
         button={{
+          ariaLabel: "next button",
           className: "go-next-button",
           icon: "images/icon-next.svg",
           alt: "go next button",
           width: "48",
           height: "48",
+
           actionOnClick: nextOnClick,
           isDisabled: isNextDisabled,
         }}

@@ -39,7 +39,7 @@ const NavBar = (): React.ReactElement => {
         </li>
         <li>
           <NavLink
-            to={paths.createPage}
+            to={isLogged ? paths.createPage : paths.login}
             className="navigation-menu__add-button"
             aria-label="add"
           >
@@ -57,7 +57,7 @@ const NavBar = (): React.ReactElement => {
             <Button
               button={{
                 className: "navigation-menu__logout-button",
-                arialLabel: "logout",
+                ariaLabel: "logout",
                 actionOnClick: () => logoutOnClick(),
                 icon: "images/logout-button.svg",
                 alt: "logout button",

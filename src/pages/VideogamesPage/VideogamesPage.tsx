@@ -12,7 +12,7 @@ const VideogamesPage = (): React.ReactElement => {
   const [skip, setSkip] = useState(0);
   const [totalVideogames, setTotalVideogames] = useState(0);
   const [page, setPage] = useState(1);
-  const limit = 3;
+  const limit = 5;
 
   const nextPage = () => {
     setSkip(skip + limit);

@@ -41,7 +41,7 @@ export interface ButtonStructure {
   icon?: string;
   width?: string;
   height?: string;
-  arialLabel?: string;
+  ariaLabel?: string;
   isDisabled?: boolean;
   children?: React.ReactElement;
   type?: "button" | "submit" | "reset" | undefined;
