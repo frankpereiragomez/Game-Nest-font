@@ -111,4 +111,38 @@ describe("Given a useVideogames custom hook", () => {
       expect(errorMessage).toBe(feedbackMessages.createFailed);
     });
   });
+
+  describe("When is called the getVideogameById function with a videogame's id", () => {
+    test("Then it should return the videogame selected by id", async () => {
+      const expectedVideogame = videogamesCollectionMock[0];
+
+      const {
+        result: {
+          current: { getVideogameById },
+        },
+      } = renderHook(() => useVideogames(), { wrapper: wrapper });
+
+      const selectedVideogame = await getVideogameById(expectedVideogame.id);
+
+      expect(selectedVideogame).toStrictEqual(expectedVideogame);
+    });
+  });
+
+  describe("When is called the getVideogameById function and cannot get the videogame", () => {
+    test("Then it should show a feedback modal with 'There was an error loading the details page.' error message", async () => {
+      server.resetHandlers(...errorHandlers);
+
+      const {
+        result: {
+          current: { getVideogameById },
+        },
+      } = renderHook(() => useVideogames(), { wrapper: wrapper });
+
+      await getVideogameById(videogamesCollectionMock[0].id);
+
+      const errorMessage = store.getState().ui.message;
+
+      expect(errorMessage).toBe(feedbackMessages.detailsFailed);
+    });
+  });
 });

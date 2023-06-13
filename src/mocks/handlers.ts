@@ -24,6 +24,13 @@ export const handlers = [
     return res(ctx.status(200), ctx.json({ message: "Videogame deleted" }));
   }),
 
+  rest.get(`${apiUrl}/videogames/:videogameId`, (_req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({ videogameById: videogamesCollectionMock[0] })
+    );
+  }),
+
   rest.post(`${apiUrl}/videogames/create`, (_req, res, ctx) => {
     return res(
       ctx.status(201),
@@ -42,6 +49,10 @@ export const errorHandlers = [
   }),
 
   rest.delete(`${apiUrl}/videogames/:videogameId`, (_req, res, ctx) => {
+    return res(ctx.status(404), ctx.json({ message: "Videogame not found" }));
+  }),
+
+  rest.get(`${apiUrl}/videogames/:videogameId`, (_req, res, ctx) => {
     return res(ctx.status(404), ctx.json({ message: "Videogame not found" }));
   }),
 
