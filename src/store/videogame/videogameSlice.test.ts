@@ -64,12 +64,12 @@ describe("Given a videogameReducer reducer", () => {
     test("Then it should return a list of videogames  and the selected videogame's id ", () => {
       const expectedVideogameState: VideogameState = {
         videogames: videogamesCollectionMock,
-        videogameId: videogamesCollectionMock[0].id,
+        videogameById: videogamesCollectionMock[0],
       };
 
       const newVideogameState = videogameReducer(
         currentVideogameState,
-        loadSelectedVideogameActionCreator(videogamesCollectionMock[0].id)
+        loadSelectedVideogameActionCreator(videogamesCollectionMock[0])
       );
 
       expect(newVideogameState).toStrictEqual(expectedVideogameState);

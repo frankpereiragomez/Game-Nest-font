@@ -1,7 +1,7 @@
 import { rest } from "msw";
 import { realTokenMock } from "./mockUser";
 import { videogamesCollectionMock } from "./videogamesMocks";
-import FeedbackMessages from "../utils/feedbackMessages/feedbackMessages";
+import feedbackMessages from "../utils/feedbackMessages/feedbackMessages";
 import { getVideogamesDataMock } from "./factories/videogames/videogamesFactory";
 
 export const apiUrl = import.meta.env.VITE_APP_API_URL;
@@ -22,6 +22,13 @@ export const handlers = [
 
   rest.delete(`${apiUrl}/videogames/:videogameId`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ message: "Videogame deleted" }));
+  }),
+
+  rest.get(`${apiUrl}/videogames/:videogameId`, (_req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({ videogameById: videogamesCollectionMock[0] })
+    );
   }),
 
   rest.post(`${apiUrl}/videogames/create`, (_req, res, ctx) => {
@@ -45,10 +52,14 @@ export const errorHandlers = [
     return res(ctx.status(404), ctx.json({ message: "Videogame not found" }));
   }),
 
+  rest.get(`${apiUrl}/videogames/:videogameId`, (_req, res, ctx) => {
+    return res(ctx.status(404), ctx.json({ message: "Videogame not found" }));
+  }),
+
   rest.post(`${apiUrl}/videogames/create`, (_req, res, ctx) => {
     return res(
       ctx.status(400),
-      ctx.json({ message: FeedbackMessages.createFailed })
+      ctx.json({ message: feedbackMessages.createFailed })
     );
   }),
 ];
