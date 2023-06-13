@@ -1,14 +1,21 @@
 import useVideogames from "../../hooks/useVideogames/useVideogames";
-import { useAppSelector } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store";
+import { loadVideogamesActionCreator } from "../../store/videogame/videogameSlice";
 import VideogameCard from "../VideogameCard/VideogameCard";
 import VideogamesListStyled from "./VideogamesListStyled";
 
 const VideogameList = (): React.ReactElement => {
   const videogames = useAppSelector((state) => state.videogames.videogames);
-  const { deleteVideogame } = useVideogames();
+  const { deleteVideogame, getVideogames } = useVideogames();
+  const dispatch = useAppDispatch();
 
   const deleteOnClick = async (videogameId: string) => {
     await deleteVideogame(videogameId);
+
+    const videogameState = await getVideogames(0, 5);
+
+    videogameState &&
+      dispatch(loadVideogamesActionCreator(videogameState.videogames));
   };
 
   return (

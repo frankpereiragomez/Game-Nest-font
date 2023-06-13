@@ -1,10 +1,11 @@
 import { getVideogamesDataMock } from "../../mocks/factories/videogames/videogamesFactory";
 import { videogamesCollectionMock } from "../../mocks/videogamesMocks";
+import { VideogameState } from "../../types";
 import {
-  VideogameState,
   createVideogameActionCreator,
   deleteVideogameActionCreator,
   initialVideogameState,
+  loadSelectedVideogameActionCreator,
   loadVideogamesActionCreator,
   videogameReducer,
 } from "./videogameSlice";
@@ -14,7 +15,7 @@ describe("Given a videogameReducer reducer", () => {
     videogames: videogamesCollectionMock,
   };
 
-  describe("When it receives a current videogame state and a loadVideogames actions with a list of videogames has payload", () => {
+  describe("When it receives a current videogame state and a loadVideogames actions with a list of videogames as payload", () => {
     test("Then it should show the new state of the list of videogames", () => {
       const newVideogames = getVideogamesDataMock(2);
 
@@ -27,7 +28,7 @@ describe("Given a videogameReducer reducer", () => {
     });
   });
 
-  describe("When it receives a current videogame state and a deleteVideogame actions with an id has payload", () => {
+  describe("When it receives a current videogame state and a deleteVideogame actions with an id as payload", () => {
     test("Then it should return a list of videogames without the video game with id received", () => {
       const expectedVideogameState: VideogameState = {
         videogames: videogamesCollectionMock.slice(1),
@@ -42,7 +43,7 @@ describe("Given a videogameReducer reducer", () => {
     });
   });
 
-  describe("When it receives a current videogame state and a createVideogame actions with an new videogame has payload", () => {
+  describe("When it receives a current videogame state and a createVideogame actions with an new videogame as payload", () => {
     test("Then it should return a list with the new videogame added", () => {
       const currentVideogameState: VideogameState = {
         videogames: [videogamesCollectionMock[0]],
@@ -56,6 +57,22 @@ describe("Given a videogameReducer reducer", () => {
       expect(newVideogamesState).toStrictEqual({
         videogames: videogamesCollectionMock.slice(0, 2),
       });
+    });
+  });
+
+  describe("When it receives a current videogame state and a loadSelectedVideogame actions with an id as payload", () => {
+    test("Then it should return a list of videogames  and the selected videogame's id ", () => {
+      const expectedVideogameState: VideogameState = {
+        videogames: videogamesCollectionMock,
+        videogameId: videogamesCollectionMock[0].id,
+      };
+
+      const newVideogameState = videogameReducer(
+        currentVideogameState,
+        loadSelectedVideogameActionCreator(videogamesCollectionMock[0].id)
+      );
+
+      expect(newVideogameState).toStrictEqual(expectedVideogameState);
     });
   });
 });

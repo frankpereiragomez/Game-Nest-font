@@ -1,13 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { VideogamesDataStructure } from "../../types";
-
-export interface VideogameState {
-  videogames: VideogamesDataStructure[];
-}
-
-export interface VideogameStateResponse extends VideogameState {
-  totalVideogames: number;
-}
+import { VideogameState, VideogamesDataStructure } from "../../types";
 
 export const initialVideogameState: VideogameState = {
   videogames: [],
@@ -40,6 +32,13 @@ const videogameSlice = createSlice({
       ...currentVideogame,
       videogames: [...currentVideogame.videogames, action.payload],
     }),
+    loadSelectedVideogame: (
+      currentVideogame: VideogameState,
+      action: PayloadAction<string>
+    ): VideogameState => ({
+      ...currentVideogame,
+      videogameId: action.payload,
+    }),
   },
 });
 
@@ -47,5 +46,6 @@ export const {
   loadVideogames: loadVideogamesActionCreator,
   deleteVideogame: deleteVideogameActionCreator,
   createVideogame: createVideogameActionCreator,
+  loadSelectedVideogame: loadSelectedVideogameActionCreator,
 } = videogameSlice.actions;
 export const videogameReducer = videogameSlice.reducer;

@@ -1,5 +1,14 @@
 import React from "react";
 
+export interface VideogameState {
+  videogames: VideogamesDataStructure[];
+  videogameId?: string;
+}
+
+export interface VideogameStateResponse extends VideogameState {
+  totalVideogames: number;
+}
+
 export interface UserTokenStructure {
   id: string;
   name: string;
