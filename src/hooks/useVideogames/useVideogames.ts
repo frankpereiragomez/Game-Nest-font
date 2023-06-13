@@ -13,7 +13,7 @@ import {
   showFeedbackActionCreator,
   showLoadingActionCreator,
 } from "../../store/ui/uiSlice";
-import FeedbackMessages from "../../utils/feedbackMessages/feedbackMessages";
+import feedbackMessages from "../../utils/feedbackMessages/feedbackMessages";
 
 const useVideogames = () => {
   const dispatch = useAppDispatch();
@@ -45,7 +45,7 @@ const useVideogames = () => {
         dispatch(
           showFeedbackActionCreator({
             isError: true,
-            message: FeedbackMessages.somethingWrong,
+            message: feedbackMessages.somethingWrong,
           })
         );
       }
@@ -71,7 +71,7 @@ const useVideogames = () => {
       dispatch(
         showFeedbackActionCreator({
           isError: false,
-          message: FeedbackMessages.deleteOk,
+          message: feedbackMessages.deleteOk,
         })
       );
 
@@ -81,7 +81,7 @@ const useVideogames = () => {
       dispatch(
         showFeedbackActionCreator({
           isError: true,
-          message: FeedbackMessages.deleteFailed,
+          message: feedbackMessages.deleteFailed,
         })
       );
     }
@@ -102,7 +102,7 @@ const useVideogames = () => {
       dispatch(
         showFeedbackActionCreator({
           isError: false,
-          message: FeedbackMessages.createOk,
+          message: feedbackMessages.createOk,
         })
       );
 
@@ -111,13 +111,40 @@ const useVideogames = () => {
       dispatch(
         showFeedbackActionCreator({
           isError: true,
-          message: FeedbackMessages.createFailed,
+          message: feedbackMessages.createFailed,
         })
       );
     }
   };
 
-  return { getVideogames, deleteVideogame, createVideogame };
+  const getVideogameById = async (
+    videogameId: string
+  ): Promise<VideogamesDataStructure | undefined> => {
+    dispatch(showLoadingActionCreator());
+
+    try {
+      const {
+        data: { videogameById },
+      } = await axios.get<{
+        videogameById: VideogamesDataStructure;
+      }>(`${apiUrl}/videogames/${videogameId}`);
+
+      dispatch(hideLoadingActionCreator());
+
+      return videogameById;
+    } catch (error) {
+      dispatch(hideLoadingActionCreator());
+
+      dispatch(
+        showFeedbackActionCreator({
+          isError: true,
+          message: feedbackMessages.detailsFailed,
+        })
+      );
+    }
+  };
+
+  return { getVideogames, deleteVideogame, createVideogame, getVideogameById };
 };
 
 export default useVideogames;

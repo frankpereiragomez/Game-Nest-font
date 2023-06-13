@@ -1,7 +1,7 @@
 import { rest } from "msw";
 import { realTokenMock } from "./mockUser";
 import { videogamesCollectionMock } from "./videogamesMocks";
-import FeedbackMessages from "../utils/feedbackMessages/feedbackMessages";
+import feedbackMessages from "../utils/feedbackMessages/feedbackMessages";
 import { getVideogamesDataMock } from "./factories/videogames/videogamesFactory";
 
 export const apiUrl = import.meta.env.VITE_APP_API_URL;
@@ -48,7 +48,7 @@ export const errorHandlers = [
   rest.post(`${apiUrl}/videogames/create`, (_req, res, ctx) => {
     return res(
       ctx.status(400),
-      ctx.json({ message: FeedbackMessages.createFailed })
+      ctx.json({ message: feedbackMessages.createFailed })
     );
   }),
 ];

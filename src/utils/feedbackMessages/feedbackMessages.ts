@@ -1,6 +1,6 @@
-import { FeedbackMessages as FeedbackMessages } from "./types";
+import { FeedbackMessages as feedbackMessages } from "./types";
 
-const FeedbackMessages: FeedbackMessages = {
+const feedbackMessages: feedbackMessages = {
   createOk: "Your game has been successfully created.",
   createFailed: "Your game could not be created",
   credentialsWrong: "Wrong credentials !",
@@ -11,6 +11,7 @@ const FeedbackMessages: FeedbackMessages = {
   somethingWrong: "Something was wrong, please try again!",
   pageNotFound: "Page not found. Please go back.",
   goBack: "Go Back",
+  detailsFailed: "There was an error loading the details page.",
 };
 
-export default FeedbackMessages;
+export default feedbackMessages;

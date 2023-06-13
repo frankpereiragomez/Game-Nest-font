@@ -6,7 +6,7 @@ import { wrapper } from "../../utils/testUtils";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
 import { store } from "../../store";
-import FeedbackMessages from "../../utils/feedbackMessages/feedbackMessages";
+import feedbackMessages from "../../utils/feedbackMessages/feedbackMessages";
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -108,7 +108,7 @@ describe("Given a useVideogames custom hook", () => {
 
       const errorMessage = store.getState().ui.message;
 
-      expect(errorMessage).toBe(FeedbackMessages.createFailed);
+      expect(errorMessage).toBe(feedbackMessages.createFailed);
     });
   });
 });

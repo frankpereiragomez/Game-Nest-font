@@ -9,4 +9,5 @@ export interface FeedbackMessages {
   somethingWrong: string;
   pageNotFound: string;
   goBack: string;
+  detailsFailed: string;
 }
