@@ -8,7 +8,6 @@ const UserFeedback = (): React.ReactElement => {
 
   const handleOnClose = () => {
     dispatch(hideFeedbackActionCreator());
-    window.location.reload();
   };
 
   return (

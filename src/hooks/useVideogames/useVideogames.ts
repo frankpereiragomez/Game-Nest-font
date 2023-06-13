@@ -1,11 +1,12 @@
 import axios from "axios";
-import {
-  VideogameStateResponse,
-  deleteVideogameActionCreator,
-} from "../../store/videogame/videogameSlice";
+import { deleteVideogameActionCreator } from "../../store/videogame/videogameSlice";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { apiUrl } from "../../mocks/handlers";
-import { VideogamesDataStructure, VideogamesStructure } from "../../types";
+import {
+  VideogameStateResponse,
+  VideogamesDataStructure,
+  VideogamesStructure,
+} from "../../types";
 import { useCallback } from "react";
 import {
   hideLoadingActionCreator,
