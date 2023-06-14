@@ -10,6 +10,10 @@ const VideogameCardStyled = styled.section`
   width: 270px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
+  &.videogame-card__owner {
+    background-color: ${({ theme }) => theme.colors.primary_color};
+  }
+
   .videogame-card {
     &__image-container {
       object-fit: cover;

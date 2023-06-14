@@ -12,6 +12,7 @@ const DetailsPageStyled = styled.main`
       rgba(0, 0, 0, 0.19) 0px 6px 20px 0px;
     margin: 0 auto;
     margin-top: 30px;
+    padding-bottom: 110px;
 
     &__heading {
       text-align: center;

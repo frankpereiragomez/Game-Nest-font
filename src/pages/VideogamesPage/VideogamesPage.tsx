@@ -36,16 +36,18 @@ const VideogamesPage = (): React.ReactElement => {
 
         setTotalVideogames(totalVideogames);
 
-        const firstVideogameImage = videogames[0].image;
+        if (videogames.length > 0) {
+          const firstVideogameImage = videogames[0].image;
 
-        const preconnectElement = document.createElement("link");
-        preconnectElement.rel = "preload";
-        preconnectElement.as = "image";
-        preconnectElement.href = firstVideogameImage;
+          const preconnectElement = document.createElement("link");
+          preconnectElement.rel = "preload";
+          preconnectElement.as = "image";
+          preconnectElement.href = firstVideogameImage;
 
-        const parentElement = document.head;
-        const firstChild = parentElement.firstChild;
-        parentElement.insertBefore(preconnectElement, firstChild);
+          const parentElement = document.head;
+          const firstChild = parentElement.firstChild;
+          parentElement.insertBefore(preconnectElement, firstChild);
+        }
       }
     })();
   }, [dispatch, getVideogames, limit, skip]);

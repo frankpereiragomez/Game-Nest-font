@@ -6,6 +6,7 @@ const PageNotFoundStyled = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 110px;
 
   .info-container {
     display: flex;

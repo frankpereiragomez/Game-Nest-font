@@ -1,12 +1,9 @@
 import { rest } from "msw";
 import { realTokenMock } from "./mockUser";
-import { videogamesCollectionMock } from "./videogamesMocks";
+import { mockForPagination, videogamesCollectionMock } from "./videogamesMocks";
 import feedbackMessages from "../utils/feedbackMessages/feedbackMessages";
-import { getVideogamesDataMock } from "./factories/videogames/videogamesFactory";
 
 export const apiUrl = import.meta.env.VITE_APP_API_URL;
-
-export const videogamesFactory = getVideogamesDataMock(12);
 
 export const handlers = [
   rest.post(`${apiUrl}/user/login`, (_req, res, ctx) => {
@@ -73,8 +70,8 @@ export const paginationHandlers = [
     return res(
       ctx.status(200),
       ctx.json({
-        videogames: videogamesFactory,
-        totalVideogames: videogamesFactory.length,
+        videogames: mockForPagination,
+        totalVideogames: mockForPagination.length,
       })
     );
   }),

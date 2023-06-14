@@ -57,10 +57,6 @@ const GlobalStyle = createGlobalStyle`
     object-fit: cover;
   }
 
-  .body-container--login {
-    padding-bottom: 0px;
-  }
-
 `;
 
 export default GlobalStyle;
