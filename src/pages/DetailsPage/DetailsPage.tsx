@@ -27,6 +27,16 @@ const DetailsPage = (): React.ReactElement => {
             videogame as VideogamesDataStructure
           )
         );
+
+        const firstImageUrl = videogame?.image as string;
+        const preconnectElement = await document.createElement("link");
+        preconnectElement.rel = "preload";
+        preconnectElement.as = "image";
+        preconnectElement.href = firstImageUrl;
+
+        const parent = document.head;
+        const firstChild = document.head.firstChild;
+        parent.insertBefore(preconnectElement, firstChild);
       }
     })();
   }, [dispatch, getVideogameById, videogameId]);

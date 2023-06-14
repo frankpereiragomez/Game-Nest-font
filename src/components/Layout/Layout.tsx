@@ -17,10 +17,7 @@ const Layout = (): React.ReactElement => {
       {showFeedback && <UserFeedback />}
       {isLoading && <Loading />}
       <Header />
-      <GeneralContainerStyled
-        className={`body-container${pathname === paths.login && "--login"}`}
-        aria-label="general-container"
-      >
+      <GeneralContainerStyled className="body-container">
         <Outlet />
       </GeneralContainerStyled>
       {pathname !== paths.login && <NavBar />}

@@ -21,7 +21,11 @@ const VideogameCard = ({
 
   return (
     <>
-      <VideogameCardStyled className="videogame-card">
+      <VideogameCardStyled
+        className={`${
+          isVideogameOwner ? "videogame-card__owner" : "videogame-card"
+        }`}
+      >
         <div className="videogame-card__image-container">
           <Link to={`/${videogame.id}`}>
             <img

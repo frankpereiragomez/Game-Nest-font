@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const LoginPageStyled = styled.section`
-  background-image: url("images/snes-background.webp");
+  background-image: url("images/loginBackground-2.webp");
   min-height: 100vh;
   background-size: cover;
   background-position: center;

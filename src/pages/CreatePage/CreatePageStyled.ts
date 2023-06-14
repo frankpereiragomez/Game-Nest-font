@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const CreatePageStyled = styled.main`
+  padding-bottom: 110px;
   .create-container {
     &__title {
       text-align: center;
