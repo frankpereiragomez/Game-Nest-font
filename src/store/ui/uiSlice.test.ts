@@ -29,6 +29,9 @@ describe("Given a hiddeLoading reducer", () => {
     test("Then it should toogle the isLoading property to false", () => {
       const currentUiState: UiStructure = {
         isLoading: true,
+        isError: false,
+        message: "",
+        showFeedback: false,
       };
       const expectedState: UiStructure = {
         isLoading: false,
@@ -79,6 +82,7 @@ describe("Given a hideFeedback reducer", () => {
         showFeedback: true,
         isError: false,
         message: "",
+        isLoading: false,
       };
       const expectedUiState: UiStructure = {
         showFeedback: false,

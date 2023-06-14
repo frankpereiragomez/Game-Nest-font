@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { getVideogamesDataMock } from "../../mocks/factories/videogames/videogamesFactory";
-import { renderWithProviders } from "../../utils/testUtils";
+import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import VideogameList from "./VideogamesList";
 import { realTokenMock } from "../../mocks/mockUser";
 import { videogamesCollectionMock } from "../../mocks/videogamesMocks";
@@ -11,7 +11,7 @@ describe("Given a VideogamesList component", () => {
     test("Then it should show the heading of every videogame", () => {
       const videogamesListMock = getVideogamesDataMock(3);
 
-      renderWithProviders(<VideogameList />, {
+      renderWithProviders(wrapWithRouter(<VideogameList />), {
         videogames: { videogames: videogamesListMock },
       });
 
@@ -31,7 +31,7 @@ describe("Given a VideogamesList component", () => {
       const videogameListMock = videogamesCollectionMock;
       const buttonAltText = "remove button";
 
-      renderWithProviders(<VideogameList />, {
+      renderWithProviders(wrapWithRouter(<VideogameList />), {
         user: {
           isLogged: true,
           id: videogameListMock[0].user as string,

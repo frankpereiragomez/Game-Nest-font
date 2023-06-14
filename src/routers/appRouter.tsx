@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import paths from "./path/paths";
 import {
   LazyCreatePage,
+  LazyDetailsPage,
   LazyLoginPage,
   LazyNotFoundPage,
   LazyVideogamesPage,
@@ -39,6 +40,14 @@ const routes: RouteObject[] = [
         element: (
           <Suspense>
             <LazyCreatePage />
+          </Suspense>
+        ),
+      },
+      {
+        path: `/:videogameId`,
+        element: (
+          <Suspense>
+            <LazyDetailsPage />
           </Suspense>
         ),
       },

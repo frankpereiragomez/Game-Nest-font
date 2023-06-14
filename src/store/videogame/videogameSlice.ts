@@ -1,9 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import {
-  VideogameState,
-  VideogamesDataStructure,
-  VideogamesStructure,
-} from "../../types";
+import { VideogameState, VideogamesDataStructure } from "../../types";
 
 export const initialVideogameState: VideogameState = {
   videogames: [],
@@ -38,7 +34,7 @@ const videogameSlice = createSlice({
     }),
     loadSelectedVideogame: (
       currentVideogame: VideogameState,
-      action: PayloadAction<VideogamesStructure>
+      action: PayloadAction<VideogamesDataStructure>
     ): VideogameState => ({
       ...currentVideogame,
       videogameById: action.payload,

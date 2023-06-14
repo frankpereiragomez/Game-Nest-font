@@ -1,6 +1,6 @@
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { renderWithProviders } from "../../utils/testUtils";
+import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import VideogamesPage from "./VideogamesPage";
 import { videogamesCollectionMock } from "../../mocks/videogamesMocks";
 import { server } from "../../mocks/server";
@@ -9,7 +9,7 @@ import { paginationHandlers } from "../../mocks/handlers";
 describe("Given a VideogamesPage component", () => {
   describe("When it's rendered", () => {
     test("Then it should show a list of videogames", () => {
-      renderWithProviders(<VideogamesPage />, {
+      renderWithProviders(wrapWithRouter(<VideogamesPage />), {
         videogames: { videogames: videogamesCollectionMock },
       });
 
@@ -28,7 +28,7 @@ describe("Given a VideogamesPage component", () => {
     test("Then it should show the next button enable", async () => {
       server.resetHandlers(...paginationHandlers);
 
-      renderWithProviders(<VideogamesPage />);
+      renderWithProviders(wrapWithRouter(<VideogamesPage />));
 
       const nextButton = screen.getByLabelText("next button");
 
@@ -45,7 +45,7 @@ describe("Given a VideogamesPage component", () => {
       server.resetHandlers(...paginationHandlers);
       const previousButtonAltText = "back button";
 
-      renderWithProviders(<VideogamesPage />);
+      renderWithProviders(wrapWithRouter(<VideogamesPage />));
 
       const nextButton = screen.getByLabelText("next button");
       const previousButton = screen.getByLabelText(previousButtonAltText);

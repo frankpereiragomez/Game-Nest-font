@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useAppSelector } from "../../store";
 import { VideogamesDataStructure } from "../../types";
 import Button from "../Button/Button";
@@ -22,14 +23,16 @@ const VideogameCard = ({
     <>
       <VideogameCardStyled className="videogame-card">
         <div className="videogame-card__image-container">
-          <img
-            className="videogame-card__image"
-            src={videogame.image}
-            alt={videogame.name}
-            width={181}
-            height={227}
-            loading={isLazy}
-          />
+          <Link to={`/${videogame.id}`}>
+            <img
+              className="videogame-card__image"
+              src={videogame.image}
+              alt={videogame.name}
+              width={181}
+              height={227}
+              loading={isLazy}
+            />
+          </Link>
         </div>
         <article className="videogame-card__info-container">
           <h2 className="videogame-card__name">{videogame.name}</h2>
