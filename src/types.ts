@@ -2,7 +2,7 @@ import React from "react";
 
 export interface VideogameState {
   videogames: VideogamesDataStructure[];
-  videogameById?: VideogamesStructure;
+  videogameById?: VideogamesDataStructure;
 }
 
 export interface VideogameStateResponse extends VideogameState {

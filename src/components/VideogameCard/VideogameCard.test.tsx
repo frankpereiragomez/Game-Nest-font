@@ -37,11 +37,13 @@ describe("Given a VideogameCard component", () => {
       const buttonAltText = "remove button";
 
       renderWithProviders(
-        <VideogameCard
-          actionOnClick={actionOnClickMock}
-          isLazy="lazy"
-          videogame={videogamesFactoryMock[0]}
-        />,
+        wrapWithRouter(
+          <VideogameCard
+            actionOnClick={actionOnClickMock}
+            isLazy="lazy"
+            videogame={videogamesFactoryMock[0]}
+          />
+        ),
         {
           user: {
             isLogged: true,

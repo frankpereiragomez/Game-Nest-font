@@ -56,9 +56,9 @@ const useVideogames = () => {
   const deleteVideogame = async (
     videogameId: string
   ): Promise<number | undefined> => {
-    dispatch(showLoadingActionCreator());
-
     try {
+      dispatch(showLoadingActionCreator());
+
       const { status } = await axios.delete(
         `${apiUrl}/videogames/${videogameId}`,
         reqConfig
@@ -117,32 +117,35 @@ const useVideogames = () => {
     }
   };
 
-  const getVideogameById = async (
-    videogameId: string
-  ): Promise<VideogamesDataStructure | undefined> => {
-    dispatch(showLoadingActionCreator());
+  const getVideogameById = useCallback(
+    async (
+      videogameId: string
+    ): Promise<VideogamesDataStructure | undefined> => {
+      dispatch(showLoadingActionCreator());
 
-    try {
-      const {
-        data: { videogameById },
-      } = await axios.get<{
-        videogameById: VideogamesDataStructure;
-      }>(`${apiUrl}/videogames/${videogameId}`);
+      try {
+        const {
+          data: { videogameById },
+        } = await axios.get<{
+          videogameById: VideogamesDataStructure;
+        }>(`${apiUrl}/videogames/${videogameId}`);
 
-      dispatch(hideLoadingActionCreator());
+        dispatch(hideLoadingActionCreator());
 
-      return videogameById;
-    } catch (error) {
-      dispatch(hideLoadingActionCreator());
+        return videogameById;
+      } catch (error) {
+        dispatch(hideLoadingActionCreator());
 
-      dispatch(
-        showFeedbackActionCreator({
-          isError: true,
-          message: feedbackMessages.detailsFailed,
-        })
-      );
-    }
-  };
+        dispatch(
+          showFeedbackActionCreator({
+            isError: true,
+            message: feedbackMessages.detailsFailed,
+          })
+        );
+      }
+    },
+    [dispatch]
+  );
 
   return { getVideogames, deleteVideogame, createVideogame, getVideogameById };
 };

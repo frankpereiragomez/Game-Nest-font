@@ -15,3 +15,7 @@ export const LazyNotFoundPage = lazy(
 export const LazyCreatePage = lazy(
   () => import("../../../pages/CreatePage/CreatePage.tsx")
 );
+
+export const LazyDetailsPage = lazy(
+  () => import("../../../pages/DetailsPage/DetailsPage.tsx")
+);
